@@ -1,13 +1,11 @@
 <template>
   <div class="flex-grow">
     <!-- 標準化頂部 Header -->
-    <PageHeader title="歷屆學員專題成果牆" theme="blue">
-      <template #subtitle>
-        <p class="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed text-center">
-          每一件都是學員在 920 小時培訓期間<span class="text-cyan-400 font-bold">獨立完成的前後端分離＋資料庫專案</span>。
-        </p>
-      </template>
-    </PageHeader>
+    <PageHeader
+      title="歷屆學員專題成果牆"
+      subtitle="每一件都是學員在 920 小時培訓期間獨立完成的前後端分離＋資料庫專案。"
+      theme="blue"
+    />
 
     <!-- 學員作品成果牆 (支援 3D 翻轉卡片，由 PageHeader 統一引導) -->
     <ShowcaseSection hide-header />

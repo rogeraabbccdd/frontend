@@ -7,17 +7,8 @@
     ></div>
 
     <div class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12 relative z-10 space-y-4">
-      <!-- 頂部徽章標籤 -->
-      <div
-        v-if="badge"
-        class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full text-xs font-bold border"
-        :class="badgeColorClass"
-      >
-        <span>{{ badge }}</span>
-      </div>
-
       <!-- 頁面主標題 H1 (支援 GSAP SplitText 逐字升起動畫) -->
-      <h1 ref="titleRef" class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+      <h1 ref="titleRef" class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight text-balance">
         {{ title }}
       </h1>
 
@@ -38,7 +29,6 @@ import { ref, computed } from 'vue'
 
 const props = withDefaults(
   defineProps<{
-    badge?: string
     title: string
     subtitle?: string
     theme?: 'cyan' | 'blue' | 'indigo' | 'emerald'
@@ -61,20 +51,6 @@ const glowColorClass = computed(() => {
     case 'cyan':
     default:
       return 'bg-cyan-500/15'
-  }
-})
-
-const badgeColorClass = computed(() => {
-  switch (props.theme) {
-    case 'blue':
-      return 'bg-blue-500/10 text-blue-400 border-blue-500/30'
-    case 'indigo':
-      return 'bg-indigo-500/15 text-[#8ea1e1] border-[#5865F2]/40'
-    case 'emerald':
-      return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
-    case 'cyan':
-    default:
-      return 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30'
   }
 })
 </script>

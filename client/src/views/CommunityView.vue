@@ -2,7 +2,6 @@
   <div class="flex-grow">
     <!-- 1. 全站標準化頂部 Header (與其他所有頁面完全一致，支援 GSAP SplitText 逐字升起) -->
     <PageHeader
-      badge="報名前就能先問"
       title="Discord 線上諮詢社群"
       subtitle="課前疑問、技術交流、學長姐的轉職經驗，都在這個社群裡。"
       theme="indigo"

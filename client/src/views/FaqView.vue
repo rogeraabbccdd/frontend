@@ -2,7 +2,6 @@
   <div class="flex-grow">
     <!-- 標準化頂部 Header -->
     <PageHeader
-      badge="常見疑問排解"
       title="常見問題 FAQ"
       subtitle="關於零基礎參訓、每月職訓生活津貼申請、受訓資格與培訓時段等常見問題，為您完整解答。"
       theme="cyan"

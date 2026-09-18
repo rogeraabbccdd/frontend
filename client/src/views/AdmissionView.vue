@@ -2,16 +2,10 @@
   <div class="flex-grow">
     <!-- 標準化頂部 Header -->
     <PageHeader
-      badge="官方自辦職前訓練"
       title="招生期別與報名"
+      subtitle="勞動部自辦訓練，待業民眾 100% 全額免費。"
       theme="cyan"
     >
-      <template #subtitle>
-        <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed text-center text-pretty">
-          勞動部自辦訓練，待業民眾 100% 全額免費。
-        </p>
-      </template>
-
       <!-- 即時期別報名狀態指示看板 (讓民眾一眼秒懂當前報名狀態) -->
       <template #extra>
         <div class="mt-5 max-w-xl mx-auto w-full px-2 sm:px-0">
