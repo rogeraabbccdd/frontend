@@ -363,8 +363,8 @@ const navItems = [
 	{ name: '課程特色', path: '/' },
 	{ name: '專題成果', path: '/showcase' },
 	{ name: '招生期別', path: '/admission' },
-	{ name: '線上諮詢', path: '/community' },
 	{ name: '常見問題', path: '/faq' },
+	{ name: '線上諮詢', path: '/community' },
 ]
 
 const navbarContainerClasses = computed(() => {

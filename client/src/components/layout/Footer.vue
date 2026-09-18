@@ -56,9 +56,9 @@
           <span class="hidden sm:inline text-slate-600" aria-hidden="true">•</span>
           <router-link to="/admission" class="hover:text-cyan-400 transition-colors py-1.5 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none rounded">招生期別</router-link>
           <span class="hidden sm:inline text-slate-600" aria-hidden="true">•</span>
-          <router-link to="/community" class="hover:text-cyan-400 transition-colors py-1.5 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none rounded">線上諮詢</router-link>
-          <span class="hidden sm:inline text-slate-600" aria-hidden="true">•</span>
           <router-link to="/faq" class="hover:text-cyan-400 transition-colors py-1.5 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none rounded">常見問題</router-link>
+          <span class="hidden sm:inline text-slate-600" aria-hidden="true">•</span>
+          <router-link to="/community" class="hover:text-cyan-400 transition-colors py-1.5 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none rounded">線上諮詢</router-link>
         </div>
       </div>
 

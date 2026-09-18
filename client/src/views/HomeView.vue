@@ -98,7 +98,7 @@
 						to="/community"
 						class="w-full sm:w-auto px-6 py-3.5 rounded-2xl text-base font-bold text-slate-300 hover:text-white bg-slate-900/80 hover:bg-slate-800/90 border border-slate-700/80 hover:border-slate-600 transition-all flex items-center justify-center space-x-2"
 					>
-						<span>交通與諮詢</span>
+						<span>線上諮詢</span>
 					</router-link>
 				</div>
 
