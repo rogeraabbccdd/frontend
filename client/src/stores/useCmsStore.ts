@@ -7,7 +7,7 @@ import type {
   StudentProject, FAQItem
 } from '@/types'
 
-const CACHE_KEY = 'wdaweb_cms_cache_v2'
+const CACHE_KEY = 'wdaweb_cms_cache_v3'
 
 // 預設靜態快照 (確保 0.01 秒秒開與 Render 後端休眠冷啟動零等待體驗)
 const defaultSettings: SiteSetting = {
@@ -46,7 +46,7 @@ const defaultCarousels: CarouselItem[] = [
   {
     id: 2,
     title: '現代前端框架與 AI 協同開發',
-    subtitle: '一人兩機雙螢幕教學設備 ｜ 打造 AI 應用的優秀作品集 ｜ 跨領域轉職最佳起點',
+    subtitle: '一人兩機雙螢幕教學設備 ｜ 做出能拿去面試的 AI 應用作品 ｜ 跨領域轉職的起點',
     image_url: '',
     mobile_image_url: '',
     image_alt: '泰山職訓雙螢幕教室實境',
@@ -119,33 +119,33 @@ const defaultModules: CurriculumModule[] = [
 ]
 
 const defaultProjects: StudentProject[] = [
-  { id: 1, student_name: '蔡昀容', batch_tag: '結訓成果', project_name: '夢百貨', cover_image_url: './projects/project_1.webp', image_alt: '夢百貨 - 學員蔡昀容專題作品成果', demo_url: 'https://blackcat0708.github.io/DreamDepartmentStore-front/#/', github_url: '', view_count: 128, is_featured: false, sort_order: 1 },
-  { id: 2, student_name: '董元琪', batch_tag: '結訓成果', project_name: 'Matching TRPG', cover_image_url: './projects/project_2.webp', image_alt: 'Matching TRPG - 學員董元琪專題作品成果', demo_url: 'https://chichitung.github.io/MatchingTRPG-front/#/', github_url: '', view_count: 96, is_featured: false, sort_order: 2 },
-  { id: 3, student_name: '仲崇安', batch_tag: '結訓成果', project_name: 'Voice Land', cover_image_url: './projects/project_3.webp', image_alt: 'Voice Land - 學員仲崇安專題作品成果', demo_url: 'https://josh19961201.github.io/VoiceLand_front/#/', github_url: '', view_count: 112, is_featured: false, sort_order: 3 },
-  { id: 4, student_name: '楊詠茜', batch_tag: '結訓成果', project_name: '桌下吧', cover_image_url: './projects/project_4.webp', image_alt: '桌下吧 - 學員楊詠茜專題作品成果', demo_url: 'https://cloris222.github.io/quasar-project/#/', github_url: '', view_count: 85, is_featured: false, sort_order: 4 },
-  { id: 5, student_name: '黃姿瑄', batch_tag: '結訓成果', project_name: '團購趣', cover_image_url: './projects/project_5.webp', image_alt: '團購趣 - 學員黃姿瑄專題作品成果', demo_url: 'https://a733181.github.io/2022-buytogether/#/', github_url: '', view_count: 73, is_featured: false, sort_order: 5 },
-  { id: 6, student_name: '許凱炫', batch_tag: '結訓成果', project_name: '一個地方', cover_image_url: './projects/project_6.webp', image_alt: '一個地方 - 學員許凱炫專題作品成果', demo_url: 'https://qweasd333ee.github.io/a-place-bar-front/', github_url: '', view_count: 64, is_featured: false, sort_order: 6 },
-  { id: 7, student_name: '徐嘉伶', batch_tag: '結訓成果', project_name: 'AZ.ZERO', cover_image_url: './projects/project_7.webp', image_alt: 'AZ.ZERO - 學員徐嘉伶專題作品成果', demo_url: 'https://lisia229.github.io/AZFront/#/', github_url: '', view_count: 91, is_featured: false, sort_order: 7 },
-  { id: 8, student_name: '郭思緯', batch_tag: '結訓成果', project_name: 'Show Time', cover_image_url: './projects/project_8.webp', image_alt: 'Show Time - 學員郭思緯專題作品成果', demo_url: 'https://kkone0275.github.io/top-free-time-front/#/', github_url: '', view_count: 105, is_featured: false, sort_order: 8 },
-  { id: 9, student_name: '王政文', batch_tag: '結訓成果', project_name: 'Ocean', cover_image_url: './projects/project_9.webp', image_alt: 'Ocean - 學員王政文專題作品成果', demo_url: 'https://nailshort.github.io/Ocean-front/#/', github_url: '', view_count: 58, is_featured: false, sort_order: 9 },
-  { id: 10, student_name: '胡俊宇', batch_tag: '結訓成果', project_name: '揪遊 (JoYo)', cover_image_url: './projects/project_10.webp', image_alt: '揪遊 (JoYo) - 學員胡俊宇專題作品成果', demo_url: 'https://lilmax922.github.io/JoYo-Front/#/', github_url: '', view_count: 79, is_featured: false, sort_order: 10 },
-  { id: 11, student_name: '張雅涵', batch_tag: '結訓成果', project_name: 'Sunday', cover_image_url: './projects/project_11.webp', image_alt: 'Sunday - 學員張雅涵專題作品成果', demo_url: 'https://vvn719.github.io/SUNDAY-vue-project/#/', github_url: '', view_count: 67, is_featured: false, sort_order: 11 },
-  { id: 12, student_name: '黃佳琦', batch_tag: '結訓成果', project_name: '綠善生活農場', cover_image_url: './projects/project_12.webp', image_alt: '綠善生活農場 - 學員黃佳琦專題作品成果', demo_url: 'https://gagiherdesign.github.io/susi-front/#/', github_url: '', view_count: 82, is_featured: false, sort_order: 12 },
-  { id: 13, student_name: '蔡文瑜', batch_tag: '結訓成果', project_name: 'BCoffee', cover_image_url: './projects/project_13.webp', image_alt: 'BCoffee - 學員蔡文瑜專題作品成果', demo_url: 'https://pato830729.github.io/BCcoffee-front/#/', github_url: '', view_count: 74, is_featured: false, sort_order: 13 },
-  { id: 14, student_name: '蘇俞甄', batch_tag: '結訓成果', project_name: 'MAUNA COFFEE', cover_image_url: './projects/project_14.webp', image_alt: 'MAUNA COFFEE - 學員蘇俞甄專題作品成果', demo_url: 'https://a5a5aa.github.io/TSFP-front/#/', github_url: '', view_count: 63, is_featured: false, sort_order: 14 },
-  { id: 15, student_name: '林佳霓', batch_tag: '結訓成果', project_name: 'Sanvia 重構情緒價值的場域', cover_image_url: './projects/project_15.webp', image_alt: 'Sanvia 重構情緒價值的場域 - 學員林佳霓專題作品成果', demo_url: 'https://ho-67.github.io/SANVIA_FRONT/#/', github_url: 'https://ho-67.github.io/SANVIA_FRONT/#/', view_count: 55, is_featured: false, sort_order: 15 },
-  { id: 16, student_name: '許庭瑋', batch_tag: '結訓成果', project_name: 'JIANICE', cover_image_url: './projects/project_16.webp', image_alt: 'JIANICE - 學員許庭瑋專題作品成果', demo_url: 'https://yunahsuya.github.io/JIANICE-vuetify-project/#/', github_url: 'https://yunahsuya.github.io/JIANICE-vuetify-project/#/', view_count: 62, is_featured: false, sort_order: 16 },
-  { id: 17, student_name: '鄭紫明', batch_tag: '結訓成果', project_name: '毛孩救援站', cover_image_url: './projects/project_17.webp', image_alt: '毛孩救援站 - 學員鄭紫明專題作品成果', demo_url: 'https://ziming224.github.io/project--vuetify/#/', github_url: 'https://ziming224.github.io/project--vuetify/#/', view_count: 48, is_featured: false, sort_order: 17 },
-  { id: 18, student_name: '許峻誠', batch_tag: '結訓成果', project_name: 'MuscleMap', cover_image_url: './projects/project_18.webp', image_alt: 'MuscleMap - 學員許峻誠專題作品成果', demo_url: 'https://milktea910.github.io/MuscleMap/#/', github_url: 'https://milktea910.github.io/MuscleMap/#/', view_count: 71, is_featured: false, sort_order: 18 },
-  { id: 19, student_name: '李晨嫣', batch_tag: '結訓成果', project_name: '打工換宿媒合平台', cover_image_url: './projects/project_19.webp', image_alt: '打工換宿媒合平台 - 學員李晨嫣專題作品成果', demo_url: 'https://startina803.github.io/IsandRoaming-front/#/', github_url: 'https://startina803.github.io/IsandRoaming-front/#/', view_count: 69, is_featured: false, sort_order: 19 },
-  { id: 20, student_name: '郭建廷', batch_tag: '結訓成果', project_name: '插畫家的風格網站', cover_image_url: './projects/project_20.webp', image_alt: '插畫家的風格網站 - 學員郭建廷專題作品成果', demo_url: 'https://judywangart.com/#/', github_url: 'https://judywangart.com/#/', view_count: 59, is_featured: false, sort_order: 20 },
-  { id: 21, student_name: '詹薏靜', batch_tag: '結訓成果', project_name: 'JIOVOLLEY', cover_image_url: './projects/project_21.webp', image_alt: 'JIOVOLLEY - 學員詹薏靜專題作品成果', demo_url: 'https://jlo-1992.github.io/jiovolley/#/', github_url: 'https://jlo-1992.github.io/jiovolley/#/', view_count: 84, is_featured: false, sort_order: 21 },
-  { id: 22, student_name: '謝昇運', batch_tag: '結訓成果', project_name: '迷因典', cover_image_url: './projects/project_22.webp', image_alt: '迷因典 - 學員謝昇運專題作品成果', demo_url: 'https://memedam.com/', github_url: 'https://memedam.com/', view_count: 93, is_featured: false, sort_order: 22 }
+  { id: 1, student_name: '蔡昀容', batch_tag: '110年第二期', project_name: '夢百貨', cover_image_url: './projects/project_1.webp', image_alt: '夢百貨 - 學員蔡昀容專題作品成果', demo_url: 'https://blackcat0708.github.io/DreamDepartmentStore-front/#/', github_url: '', view_count: 128, is_featured: false, sort_order: 1 },
+  { id: 2, student_name: '董元琪', batch_tag: '111年第二期', project_name: 'Matching TRPG', cover_image_url: './projects/project_2.webp', image_alt: 'Matching TRPG - 學員董元琪專題作品成果', demo_url: 'https://chichitung.github.io/MatchingTRPG-front/#/', github_url: '', view_count: 96, is_featured: false, sort_order: 2 },
+  { id: 3, student_name: '仲崇安', batch_tag: '111年第二期', project_name: 'Voice Land', cover_image_url: './projects/project_3.webp', image_alt: 'Voice Land - 學員仲崇安專題作品成果', demo_url: 'https://josh19961201.github.io/VoiceLand_front/#/', github_url: '', view_count: 112, is_featured: false, sort_order: 3 },
+  { id: 4, student_name: '楊詠茜', batch_tag: '111年第二期', project_name: '桌下吧', cover_image_url: './projects/project_4.webp', image_alt: '桌下吧 - 學員楊詠茜專題作品成果', demo_url: 'https://cloris222.github.io/quasar-project/#/', github_url: '', view_count: 85, is_featured: false, sort_order: 4 },
+  { id: 5, student_name: '黃姿瑄', batch_tag: '111年第二期', project_name: '團購趣', cover_image_url: './projects/project_5.webp', image_alt: '團購趣 - 學員黃姿瑄專題作品成果', demo_url: 'https://a733181.github.io/2022-buytogether/#/', github_url: '', view_count: 73, is_featured: false, sort_order: 5 },
+  { id: 6, student_name: '許凱炫', batch_tag: '111年第二期', project_name: '一個地方', cover_image_url: './projects/project_6.webp', image_alt: '一個地方 - 學員許凱炫專題作品成果', demo_url: 'https://qweasd333ee.github.io/a-place-bar-front/', github_url: '', view_count: 64, is_featured: false, sort_order: 6 },
+  { id: 7, student_name: '徐嘉伶', batch_tag: '111年第二期', project_name: 'AZ.ZERO', cover_image_url: './projects/project_7.webp', image_alt: 'AZ.ZERO - 學員徐嘉伶專題作品成果', demo_url: 'https://lisia229.github.io/AZFront/#/', github_url: '', view_count: 91, is_featured: false, sort_order: 7 },
+  { id: 8, student_name: '郭思緯', batch_tag: '111年第二期', project_name: 'Show Time', cover_image_url: './projects/project_8.webp', image_alt: 'Show Time - 學員郭思緯專題作品成果', demo_url: 'https://kkone0275.github.io/top-free-time-front/#/', github_url: '', view_count: 105, is_featured: false, sort_order: 8 },
+  { id: 9, student_name: '王政文', batch_tag: '111年第二期', project_name: 'Ocean', cover_image_url: './projects/project_9.webp', image_alt: 'Ocean - 學員王政文專題作品成果', demo_url: 'https://nailshort.github.io/Ocean-front/#/', github_url: '', view_count: 58, is_featured: false, sort_order: 9 },
+  { id: 10, student_name: '胡俊宇', batch_tag: '111年第二期', project_name: '揪遊 (JoYo)', cover_image_url: './projects/project_10.webp', image_alt: '揪遊 (JoYo) - 學員胡俊宇專題作品成果', demo_url: 'https://lilmax922.github.io/JoYo-Front/#/', github_url: '', view_count: 79, is_featured: false, sort_order: 10 },
+  { id: 11, student_name: '張雅涵', batch_tag: '111年第二期', project_name: 'Sunday', cover_image_url: './projects/project_11.webp', image_alt: 'Sunday - 學員張雅涵專題作品成果', demo_url: 'https://vvn719.github.io/SUNDAY-vue-project/#/', github_url: '', view_count: 67, is_featured: false, sort_order: 11 },
+  { id: 12, student_name: '黃佳琦', batch_tag: '111年第二期', project_name: '綠善生活農場', cover_image_url: './projects/project_12.webp', image_alt: '綠善生活農場 - 學員黃佳琦專題作品成果', demo_url: 'https://gagiherdesign.github.io/susi-front/#/', github_url: '', view_count: 82, is_featured: false, sort_order: 12 },
+  { id: 13, student_name: '蔡文瑜', batch_tag: '111年第二期', project_name: 'BCoffee', cover_image_url: './projects/project_13.webp', image_alt: 'BCoffee - 學員蔡文瑜專題作品成果', demo_url: 'https://pato830729.github.io/BCcoffee-front/#/', github_url: '', view_count: 74, is_featured: false, sort_order: 13 },
+  { id: 14, student_name: '蘇俞甄', batch_tag: '111年第二期', project_name: 'MAUNA COFFEE', cover_image_url: './projects/project_14.webp', image_alt: 'MAUNA COFFEE - 學員蘇俞甄專題作品成果', demo_url: 'https://a5a5aa.github.io/TSFP-front/#/', github_url: '', view_count: 63, is_featured: false, sort_order: 14 },
+  { id: 15, student_name: '林佳霓', batch_tag: '114年第一期', project_name: 'Sanvia 重構情緒價值的場域', cover_image_url: './projects/project_15.webp', image_alt: 'Sanvia 重構情緒價值的場域 - 學員林佳霓專題作品成果', demo_url: 'https://ho-67.github.io/SANVIA_FRONT/#/', github_url: 'https://ho-67.github.io/SANVIA_FRONT/#/', view_count: 55, is_featured: false, sort_order: 15 },
+  { id: 16, student_name: '許庭瑋', batch_tag: '114年第一期', project_name: 'JIANICE', cover_image_url: './projects/project_16.webp', image_alt: 'JIANICE - 學員許庭瑋專題作品成果', demo_url: 'https://yunahsuya.github.io/JIANICE-vuetify-project/#/', github_url: 'https://yunahsuya.github.io/JIANICE-vuetify-project/#/', view_count: 62, is_featured: false, sort_order: 16 },
+  { id: 17, student_name: '鄭紫明', batch_tag: '114年第一期', project_name: '毛孩救援站', cover_image_url: './projects/project_17.webp', image_alt: '毛孩救援站 - 學員鄭紫明專題作品成果', demo_url: 'https://ziming224.github.io/project--vuetify/#/', github_url: 'https://ziming224.github.io/project--vuetify/#/', view_count: 48, is_featured: false, sort_order: 17 },
+  { id: 18, student_name: '許峻誠', batch_tag: '114年第一期', project_name: 'MuscleMap', cover_image_url: './projects/project_18.webp', image_alt: 'MuscleMap - 學員許峻誠專題作品成果', demo_url: 'https://milktea910.github.io/MuscleMap/#/', github_url: 'https://milktea910.github.io/MuscleMap/#/', view_count: 71, is_featured: false, sort_order: 18 },
+  { id: 19, student_name: '李晨嫣', batch_tag: '114年第一期', project_name: '打工換宿媒合平台', cover_image_url: './projects/project_19.webp', image_alt: '打工換宿媒合平台 - 學員李晨嫣專題作品成果', demo_url: 'https://startina803.github.io/IsandRoaming-front/#/', github_url: 'https://startina803.github.io/IsandRoaming-front/#/', view_count: 69, is_featured: false, sort_order: 19 },
+  { id: 20, student_name: '郭建廷', batch_tag: '114年第一期', project_name: '插畫家的風格網站', cover_image_url: './projects/project_20.webp', image_alt: '插畫家的風格網站 - 學員郭建廷專題作品成果', demo_url: 'https://judywangart.com/#/', github_url: 'https://judywangart.com/#/', view_count: 59, is_featured: false, sort_order: 20 },
+  { id: 21, student_name: '詹薏靜', batch_tag: '114年第一期', project_name: 'JIOVOLLEY', cover_image_url: './projects/project_21.webp', image_alt: 'JIOVOLLEY - 學員詹薏靜專題作品成果', demo_url: 'https://jlo-1992.github.io/jiovolley/#/', github_url: 'https://jlo-1992.github.io/jiovolley/#/', view_count: 84, is_featured: false, sort_order: 21 },
+  { id: 22, student_name: '謝昇運', batch_tag: '114年第一期', project_name: '迷因典', cover_image_url: './projects/project_22.webp', image_alt: '迷因典 - 學員謝昇運專題作品成果', demo_url: 'https://memedam.com/', github_url: 'https://memedam.com/', view_count: 93, is_featured: false, sort_order: 22 }
 ]
 
 const defaultTechCards: TechCard[] = [
   { id: 1, category_tab: '基礎與排版', tech_name: 'HTML5 & CSS3', icon_url: '', image_alt: 'HTML5 & CSS3', description: '現代網頁語意標籤與進階排版', sort_order: 1 },
-  { id: 2, category_tab: '基礎與排版', tech_name: 'Bootstrap & Tailwind', icon_url: '', image_alt: 'Bootstrap & Tailwind', description: '現代前端 UI 框架、快速建立高質感響應式 (RWD) 介面', sort_order: 2 },
+  { id: 2, category_tab: '基礎與排版', tech_name: 'Bootstrap & Tailwind', icon_url: '', image_alt: 'Bootstrap & Tailwind', description: '現代前端 UI 框架，快速建立響應式 (RWD) 介面', sort_order: 2 },
   { id: 3, category_tab: '視覺與設計', tech_name: 'Adobe Photoshop & AI', icon_url: '', image_alt: 'Adobe Photoshop & AI', description: '影像處理修圖、Icon 圖示設計與 UI/UX 視覺傳達流程', sort_order: 3 },
   { id: 4, category_tab: '核心動態技術', tech_name: 'JavaScript (ES6+)', icon_url: '', image_alt: 'JavaScript (ES6+)', description: '原生 DOM 操作、非同步 Promise / Async-Await 與現代語法', sort_order: 4 },
   { id: 5, category_tab: '核心動態技術', tech_name: 'Vue.js 3 & Pinia', icon_url: '', image_alt: 'Vue.js 3 & Pinia', description: '組件化架構、Composition API、Vue Router 路由與狀態管理', sort_order: 5 },
@@ -159,7 +159,7 @@ const defaultFacilities: Facility[] = [
     id: 1,
     facility_name: '寬敞明亮專屬實作空間',
     subtitle: '雙螢幕教學設備',
-    description: '專屬獨立座位與高速光纖網路，提供 920 小時專注沉浸式程式開發環境。一人配置雙螢幕電腦，邊看講師即時示範邊同步動手編程，學習不漏拍！',
+    description: '專屬獨立座位，一人配置雙螢幕電腦，可邊看講師示範邊同步動手實作。',
     image_url: '',
     image_alt: '寬敞明亮專屬實作空間、雙螢幕教學設備',
     sort_order: 1
@@ -168,7 +168,7 @@ const defaultFacilities: Facility[] = [
     id: 2,
     facility_name: '整潔舒適專屬用餐空間',
     subtitle: '完善生活休憩設施',
-    description: '寬敞木質長桌搭配舒適空調，提供課間放鬆交流的休憩環境。現場備有冷藏冰箱與專業閱覽多功能收納書櫃，方便餐點補給與翻書充電，休息、充電一次到位！',
+    description: '寬敞木質長桌搭配舒適空調，現場備有冷藏冰箱與多功能收納書櫃。',
     image_url: '',
     image_alt: '整潔舒適專屬用餐空間、完善生活休憩設施',
     sort_order: 2
@@ -176,16 +176,16 @@ const defaultFacilities: Facility[] = [
 ]
 
 const defaultFAQs: FAQItem[] = [
-  { id: 1, category: '參訓資格', question: '完全沒有寫過程式或設計背景適合報名嗎？', answer: '非常適合！本專班專為零基礎及跨領域轉職者量身打造，只要您對程式設計與 AI 應用抱持濃厚興趣即可報名。課程從最基礎的 HTML/CSS 排版與視覺設計教起，循序漸進至 JavaScript 與 Vue 3 動態框架，並深度結合生成式 AI 輔助開發，全力培養能靈活運用 AI 賦能的跨領域現代網頁設計與前端實戰人才！', sort_order: 1 },
-  { id: 2, category: '參訓費用', question: '參加本訓練需要負擔學費或材料費嗎？', answer: '待業者完全免費！本課程為勞動部自辦職前訓練，政府全額補助學費與材料費。', sort_order: 2 },
+  { id: 1, category: '參訓資格', question: '完全沒有寫過程式或設計背景適合報名嗎？', answer: '適合。本專班就是為零基礎與跨領域轉職者開設的。課程從 HTML/CSS 排版與視覺設計教起，再進到 JavaScript 與 Vue 3，並結合生成式 AI 輔助開發。', sort_order: 1 },
+  { id: 2, category: '參訓費用', question: '參加本訓練需要負擔學費或材料費嗎？', answer: '待業者完全免費。本課程為勞動部自辦職前訓練，政府全額補助學費與材料費。', sort_order: 2 },
   { id: 3, category: '生活津貼', question: '受訓期間可以申請職業訓練生活津貼嗎？', answer: '符合非自願離職、特定對象身分者，每月可申請基本工資 60% 之職業訓練生活津貼，最高補助 6 個月。', sort_order: 3 },
-  { id: 4, category: '上課時間', question: '上課時間與地點為何？', answer: '週一至週五 08:30 ~ 16:35（全日制培訓），上課地點於勞動部泰山職業訓練場（新北市泰山區致遠新村 55 之 1 號）。', sort_order: 4 },
-  { id: 5, category: '就業輔導', question: '結訓前會提供履歷健檢與作品集指導嗎？', answer: '會的！課程最後階段會由專業師資個別提供一對一履歷健檢、作品集面試優化指導，並舉辦專題成果發表會，協助學員以具備競爭力的完整作品集底氣十足接軌就業市場。', sort_order: 5 },
+  { id: 4, category: '上課時間', question: '上課時間與地點為何？', answer: '平日白天 8:10~16:35，分四節：8:10~9:50、10:10~11:50、13:00~14:40、14:45~16:35。上課地點於勞動部泰山職業訓練場（新北市泰山區致遠新村 55 之 1 號）。', sort_order: 4 },
+  { id: 5, category: '就業輔導', question: '結訓前會提供履歷健檢與作品集指導嗎？', answer: '會。課程最後階段由師資一對一提供履歷健檢與作品集面試指導，並舉辦專題成果發表會。', sort_order: 5 },
   {
     id: 6,
     category: '住宿申請',
     question: '外縣市或遠道學員有提供宿舍住宿嗎？申請資格與費用為何？',
-    answer: `有提供！泰山職業訓練場備有學員宿舍，提供符合條件之遠道待業學員申請：
+    answer: `有提供。泰山職業訓練場備有學員宿舍，提供符合條件之遠道待業學員申請：
 
 1. 申請資格：以戶籍地距離訓練場較遠（通常為 30 公里以上）之外縣市遠道學員優先，因床位有限需依規定名額審查分配。
 2. 費用規定：免收房間住宿費（免房費），僅需自付基本耗能費（如冷氣費依規定計收）及繳交住宿保證金（結訓無損點交後無息退還）。
