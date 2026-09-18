@@ -386,7 +386,7 @@
               <span v-if="!hasEnrollingBatch" class="px-2 py-0.5 rounded-full text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">下一梯次籌備中</span>
             </div>
             <p class="mt-0.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
-              下一梯次籌備中。可以先加入 Discord 或致電，開放報名時會通知你。
+              開放報名時不會另行通知，請自行留意官方公告。有問題可加入 Discord 或致電詢問。
             </p>
           </div>
         </div>
