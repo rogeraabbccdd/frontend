@@ -181,7 +181,7 @@ const currentSlide = computed(() => {
     return {
       id: 0,
       title: '你不需要一開始就會寫程式。重要的是，你願不願意從第一行開始。',
-      subtitle: '從零開始，不代表只能靠自己摸索。在 920 小時的實體陪伴中，循序建立能真正動手完成作品的扎實能力。',
+      subtitle: '從零開始，不用自己一個人摸索。920 小時的課，老師全程在教室。',
       cta_text: '立即線上報名',
       cta_link: '#batches',
       cta_target: '_self',
