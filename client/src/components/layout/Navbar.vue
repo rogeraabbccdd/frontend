@@ -82,7 +82,7 @@
 							v-for="item in navItems"
 							:key="item.path"
 							:to="item.path"
-							class="relative px-2.5 xl:px-3.5 py-1.5 xl:py-2 rounded-xl text-xs lg:text-sm xl:text-base font-bold transition-all duration-200 flex items-center space-x-1.5"
+							class="relative px-2.5 xl:px-3.5 py-1.5 xl:py-2 rounded-xl text-xs lg:text-sm xl:text-base font-bold transition-all duration-200 flex items-center justify-center gap-1.5"
 							:class="[
 								$route.path === item.path
 									? 'text-cyan-300 font-extrabold'
@@ -210,7 +210,7 @@
 								v-for="item in navItems"
 								:key="item.path"
 								:to="item.path"
-								class="relative px-3 xl:px-3.5 py-1.5 xl:py-2 rounded-xl text-sm xl:text-base font-bold transition-all duration-200 flex items-center space-x-1.5"
+								class="relative px-3 xl:px-3.5 py-1.5 xl:py-2 rounded-xl text-sm xl:text-base font-bold transition-all duration-200 flex items-center justify-center gap-1.5"
 								:class="[
 									$route.path === item.path
 										? 'text-cyan-300 font-extrabold'
