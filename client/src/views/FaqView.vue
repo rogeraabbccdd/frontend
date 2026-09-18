@@ -8,7 +8,7 @@
     />
 
     <!-- FAQ 手風琴列表 (支援絲滑展開，由 PageHeader 統一引導) -->
-    <FAQSection hide-header />
+    <FAQSection />
 
     <!-- 底部導引前往 Discord 社群 -->
     <section class="py-20 sm:py-24 bg-slate-900/30 border-t border-slate-800/60 text-center relative overflow-hidden">
@@ -21,7 +21,7 @@
               to="/community"
               class="inline-flex items-center justify-center px-8 py-4 rounded-2xl font-bold text-base text-white bg-[#5865F2] hover:bg-[#4752C4] shadow-xl shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:-translate-y-0.5 active:scale-95 transition-all"
             >
-              前往 Discord 線上諮詢社群 →
+              前往 Discord 線上諮詢社群
             </router-link>
           </div>
         </div>
