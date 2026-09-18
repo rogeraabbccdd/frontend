@@ -194,7 +194,7 @@ export function getBatchEnrollmentNotice(batches: AdmissionBatch[]): EnrollmentN
     return {
       isOpen: true,
       targetBatch: target,
-      badgeText: '🔥 報名中',
+      badgeText: '報名中',
       headline: `目前開放報名：【${shortName}】（代碼：${target.course_code || '請見卡片'}）`,
       subline: `截止至 ${target.enroll_end_date || '即日起'}（${countdown}），點擊下方卡片即可報名。`,
       theme: 'emerald'
@@ -235,7 +235,7 @@ export function getBatchEnrollmentNotice(batches: AdmissionBatch[]): EnrollmentN
   return {
     isOpen: false,
     targetBatch: null,
-    badgeText: '📢 暫無開放',
+    badgeText: '暫無開放',
     headline: `目前期別報名皆已截止 ${statusSummary}`,
     subline: '新期別招生時程籌備中，敬請留意官方最新公告。',
     theme: 'amber'

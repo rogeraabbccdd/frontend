@@ -105,13 +105,6 @@
             class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           ></div>
 
-          <!-- 角落序號水印 (01, 02) -->
-          <div
-            class="absolute -right-2 -bottom-4 text-7xl font-mono font-black select-none pointer-events-none transition-colors"
-            :class="isBatchEnded(batch) ? (isCelebrationBatch(batch) ? 'text-emerald-500/15' : 'text-slate-900/50') : 'text-slate-800/20 group-hover:text-cyan-500/10'"
-          >
-            {{ String(index + 1).padStart(2, '0') }}
-          </div>
 
           <!-- 上方資訊區 -->
           <div>
@@ -220,7 +213,7 @@
               <!-- 生命週期動態焦點看板 (單行大器展示，自適應字級防折行) -->
               <div class="mt-4 pt-3.5 border-t border-slate-800/80 text-xs sm:text-sm lg:text-base flex items-center text-slate-200 min-w-0">
                 <div class="flex items-center space-x-2 min-w-0 overflow-hidden">
-                  <span class="flex-shrink-0 text-sm sm:text-base">{{ getLifecycleDetailNotice(batch).icon }}</span>
+                  <component :is="getLifecycleDetailNotice(batch).icon" class="w-4 h-4 shrink-0" :stroke-width="1.75" aria-hidden="true" />
                   <span class="leading-relaxed font-medium whitespace-nowrap overflow-hidden text-ellipsis">{{ getLifecycleDetailNotice(batch).text }}</span>
                 </div>
               </div>
@@ -229,8 +222,9 @@
             <div class="space-y-4 text-base text-slate-300 mb-8">
               <!-- 報名期間 (手機版直式/橫式自適應) -->
               <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3.5 border-b border-slate-800/80 gap-1 sm:gap-0">
-                <span class="text-slate-400 flex items-center space-x-1.5 text-base">
-                  <span>📅 報名起訖期間</span>
+                <span class="text-slate-400 flex items-center gap-1.5 text-base">
+                  <CalendarDays class="w-4 h-4 shrink-0" :stroke-width="1.75" aria-hidden="true" />
+                  <span>報名起訖期間</span>
                 </span>
                 <div class="text-left sm:text-right">
                   <span
@@ -244,8 +238,9 @@
 
               <!-- 甄試日期 (若有，手機版自適應不擠出) -->
               <div v-if="batch.screening_date" class="flex flex-col sm:flex-row sm:items-center justify-between pb-3.5 border-b border-slate-800/80 gap-1 sm:gap-0">
-                <span class="text-slate-400 flex items-center space-x-1.5 text-base">
-                  <span>📝 甄試辦理日期</span>
+                <span class="text-slate-400 flex items-center gap-1.5 text-base">
+                  <ClipboardCheck class="w-4 h-4 shrink-0" :stroke-width="1.75" aria-hidden="true" />
+                  <span>甄試辦理日期</span>
                 </span>
                 <div class="text-left sm:text-right flex items-center flex-wrap gap-1.5">
                   <span class="font-medium font-mono text-slate-200 text-base">
@@ -257,7 +252,10 @@
 
               <!-- 訓練期間 (時程清單末項，手機版自適應) -->
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-0">
-                <span class="text-slate-400 text-base">🚀 正式訓練期間</span>
+                <span class="text-slate-400 flex items-center gap-1.5 text-base">
+                  <GraduationCap class="w-4 h-4 shrink-0" :stroke-width="1.75" aria-hidden="true" />
+                  <span>正式訓練期間</span>
+                </span>
                 <div class="text-left sm:text-right">
                   <span
                     class="font-medium font-mono text-base"
@@ -285,7 +283,7 @@
                 : 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-cyan-500/30 hover:shadow-cyan-500/50'"
             >
               <span v-if="isBatchUrgentClosing(batch)">⚠️ 席次倒數 · 立即前往台灣就業通報名</span>
-              <span v-else>🔥 立即至<span class="inline-block">台灣就業通</span>報名</span>
+              <span v-else>立即至<span class="inline-block">台灣就業通</span>報名</span>
               <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
@@ -296,9 +294,9 @@
               v-else-if="isBatchEnded(batch)"
               class="w-full py-2.5 sm:py-3 px-4 rounded-2xl bg-gradient-to-r from-emerald-950/80 via-slate-900/95 to-emerald-950/80 border border-emerald-500/50 shadow-lg shadow-emerald-950/40 flex flex-wrap items-center justify-center gap-3 sm:gap-4.5 text-base lg:text-lg select-none"
             >
-              <div class="flex items-center space-x-2 text-emerald-300 font-bold tracking-wide text-sm sm:text-base lg:text-lg">
-                <span class="text-lg sm:text-xl">🎓</span>
-                <span>本期已圓滿結訓</span>
+              <div class="flex items-center gap-2 text-emerald-300 font-bold tracking-wide text-sm sm:text-base lg:text-lg">
+                <Award class="w-5 h-5 shrink-0" :stroke-width="1.75" aria-hidden="true" />
+                <span>本期已結訓</span>
               </div>
 
               <!-- 🎉 送上祝賀互動按鈕 (與文字一同水平置中呈現) -->
@@ -307,7 +305,7 @@
                 type="button"
                 @click.stop="triggerCongratulations($event)"
                 title="點擊為結訓學員送上祝賀星塵禮花"
-                class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 active:scale-95 transition-all shadow-md shadow-emerald-500/30 cursor-pointer select-none group/btn shrink-0"
+                class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 active:scale-95 transition-all shadow-md shadow-emerald-500/30 cursor-pointer select-none group/btn shrink-0"
               >
                 <span class="text-sm sm:text-base group-hover/btn:scale-125 transition-transform">🎉</span>
                 <span>送上祝賀</span>
@@ -323,7 +321,7 @@
               <svg class="w-5 h-5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
-              <span>🎓 本期正全力培訓衝刺中</span>
+              <span>本期培訓進行中</span>
             </div>
 
             <!-- 4. 甄試結束待開訓 -->
@@ -334,7 +332,7 @@
               <svg class="w-5 h-5 text-cyan-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span class="text-center">✨ 甄試結束 · 待開訓 ({{ batch.training_start_date }} 開課)</span>
+              <span class="text-center">甄試結束，{{ batch.training_start_date }} 開訓</span>
             </div>
 
             <!-- 5. 尚未開放報名 -->
@@ -380,7 +378,7 @@
             class="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0"
             :class="!hasEnrollingBatch ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30' : 'bg-slate-800/80 text-amber-300'"
           >
-            <span class="text-xl">💡</span>
+            <Info class="w-5 h-5" :stroke-width="1.75" aria-hidden="true" />
           </div>
           <div class="text-left">
             <div class="flex items-center space-x-2">
@@ -388,7 +386,7 @@
               <span v-if="!hasEnrollingBatch" class="px-2 py-0.5 rounded-full text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">下一梯次籌備中</span>
             </div>
             <p class="mt-0.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
-              新梯次正密集籌備中，歡迎預先加入 Discord 或致電諮詢，鎖定第一手簡訊通知！
+              下一梯次籌備中。可以先加入 Discord 或致電，開放報名時會通知你。
             </p>
           </div>
         </div>
@@ -396,17 +394,19 @@
         <div class="grid grid-cols-2 gap-2.5 shrink-0 w-full sm:w-auto sm:flex sm:space-x-3 justify-end">
           <a
             :href="`tel:${(store.settings?.contact_phone || '(02) 2901-8274').replace(/[^0-9]/g, '')}`"
-            class="px-4 py-2.5 rounded-xl text-sm font-bold text-cyan-300 bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/40 hover:border-cyan-300 transition-all flex items-center justify-center space-x-1.5 shadow-sm active:scale-95 cursor-pointer"
+            class="min-h-[44px] px-4 rounded-xl text-sm font-bold text-cyan-300 bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/40 hover:border-cyan-300 transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95 cursor-pointer"
           >
-            <span>📞 招生專線</span>
+            <Phone class="w-4 h-4 shrink-0" :stroke-width="1.75" aria-hidden="true" />
+            <span>招生專線</span>
           </a>
           <a
             :href="store.settings?.discord_invite_url || 'https://discord.gg/TrerFKG'"
             target="_blank"
             rel="noopener noreferrer"
-            class="px-4 py-2.5 rounded-xl text-sm font-bold text-indigo-300 bg-indigo-500/15 hover:bg-indigo-500/25 border border-indigo-500/40 hover:border-indigo-300 transition-all flex items-center justify-center space-x-1.5 shadow-sm active:scale-95 cursor-pointer"
+            class="min-h-[44px] px-4 rounded-xl text-sm font-bold text-indigo-300 bg-indigo-500/15 hover:bg-indigo-500/25 border border-indigo-500/40 hover:border-indigo-300 transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95 cursor-pointer"
           >
-            <span>💬 官方 Discord</span>
+            <MessageCircle class="w-4 h-4 shrink-0" :stroke-width="1.75" aria-hidden="true" />
+            <span>官方 Discord</span>
           </a>
         </div>
       </div>
@@ -421,6 +421,7 @@ import type { AdmissionBatch } from '@/types'
 import { gsap } from '@/utils/motion'
 import { useScrollStagger } from '@/composables/useScrollStagger'
 import { useBatchTimeline } from '@/composables/useBatchTimeline'
+import { CalendarDays, ClipboardCheck, GraduationCap, Award, Info, Phone, MessageCircle } from 'lucide-vue-next'
 import { useCmsStore } from '@/stores/useCmsStore'
 import {
   isBatchEnded as rawIsBatchEnded,

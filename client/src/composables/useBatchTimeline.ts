@@ -1,4 +1,5 @@
-import { ref, computed, toValue, type MaybeRefOrGetter } from 'vue'
+import { ref, computed, toValue, type Component, type MaybeRefOrGetter } from 'vue'
+import { Award, PartyPopper, Timer, BookOpen, CircleCheck, PenLine, Clock, Flag } from 'lucide-vue-next'
 import type { AdmissionBatch } from '@/types'
 import { defaultBatches } from '@/stores/useCmsStore'
 import {
@@ -40,7 +41,7 @@ export interface StatusPill {
 }
 
 export interface DetailNotice {
-  icon: string
+  icon: Component
   text: string
 }
 
@@ -219,20 +220,20 @@ export function useBatchTimeline(batchesInput: MaybeRefOrGetter<AdmissionBatch[]
 
       if (isTodayGrad) {
         return {
-          label: '🎉 今日圓滿結訓 · 邁向職場',
+          label: '今日結訓',
           class: 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 shadow-md shadow-emerald-500/20 animate-pulse'
         }
       }
 
       if (isCelebration) {
         return {
-          label: '🎉 圓滿結訓 · 邁向職場',
+          label: '已結訓',
           class: 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 shadow-md shadow-emerald-500/20'
         }
       }
 
       return {
-        label: `🏁 本期已結訓 · 報名截止`,
+        label: `已結訓 · 報名截止`,
         class: 'bg-slate-900/90 text-slate-400 border border-slate-800 shadow-none'
       }
     }
@@ -358,52 +359,52 @@ export function useBatchTimeline(batchesInput: MaybeRefOrGetter<AdmissionBatch[]
       const isCelebration = isCelebrationBatch(batch)
       if (isTodayGrad || isCelebration) {
         return {
-          icon: '🎓',
-          text: '本期已圓滿結訓 · 祝賀大家未來旅途一切順利！'
+          icon: Award,
+          text: '本期已結訓，祝大家一切順利。'
         }
       }
       return {
-        icon: '🎉',
-        text: '本期已圓滿結訓 · 歡迎查閱精彩專題成果！'
+        icon: PartyPopper,
+        text: '本期已結訓，可以查看他們的專題成果。'
       }
     }
     if (isBatchTraining(batch)) {
       const prog = getTrainingProgress(batch)
       if (prog.remainingDays <= 14) {
         const remainNotice = prog.remainingDays === 0
-          ? '距結訓剩 0 天（今日結訓）！'
-          : `距結訓剩 ${prog.remainingDays} 天！`
+          ? '今日結訓'
+          : `距結訓剩 ${prog.remainingDays} 天`
         return {
-          icon: '⏳',
-          text: `受訓倒數衝刺 · 已受訓 ${prog.elapsedDays}/${prog.totalDays} 天 · ${remainNotice}`
+          icon: Timer,
+          text: `已受訓 ${prog.elapsedDays}/${prog.totalDays} 天 · ${remainNotice}`
         }
       }
       return {
-        icon: '🎓',
-        text: `920h 培訓進行中 · 已完成 ${prog.elapsedDays}/${prog.totalDays} 天`
+        icon: BookOpen,
+        text: `培訓進行中 · 已完成 ${prog.elapsedDays}/${prog.totalDays} 天`
       }
     }
     if (isBatchScreeningOrPreparing(batch)) {
       return {
-        icon: '✨',
-        text: `甄試已結束 · 名單造冊中，預計 ${formatShortDate(batch.training_start_date)} 正式開訓！`
+        icon: CircleCheck,
+        text: `甄試已結束，名單造冊中，預計 ${formatShortDate(batch.training_start_date)} 開訓。`
       }
     }
     if (isBatchEnrolling(batch)) {
       return {
-        icon: '🔥',
-        text: `官方熱烈報名中 · 把握 100% 全額補助！`
+        icon: PenLine,
+        text: `報名中 · 待業民眾 100% 全額補助`
       }
     }
     if (isBatchUpcoming(batch)) {
       return {
-        icon: '⏳',
-        text: `新一期別籌備中 · 開訓日期即將公布`
+        icon: Clock,
+        text: `新一期別籌備中 · 開訓日期尚未公布`
       }
     }
     return {
-      icon: '🏁',
-      text: `本期訓練已正式結訓 · 報名已截止受理`
+      icon: Flag,
+      text: `本期已結訓 · 報名已截止`
     }
   }
 
