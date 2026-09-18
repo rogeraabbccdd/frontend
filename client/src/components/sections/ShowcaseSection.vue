@@ -1,23 +1,24 @@
 <template>
   <section id="showcase" :class="hideHeader ? 'pt-8 pb-20 sm:pb-24 bg-transparent relative' : 'py-24 bg-slate-900/40 border-t border-slate-800/60 relative'">
     <div class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12">
-      <div v-if="!hideHeader" class="text-center max-w-5xl mx-auto mb-14">
-        <span class="px-3.5 py-1.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-sm font-bold uppercase tracking-wider">
-          Student Portfolio
-        </span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4 tracking-tight">
-          歷屆學員 Web 專題成果展示
-        </h2>
-        <p class="mt-4 text-slate-300 text-base sm:text-lg leading-relaxed text-center">
-          所有專案皆為學員於 920 小時培訓期間，<span class="text-cyan-400 font-bold">100% 獨立開發的前後端分離＋資料庫 Web 專案</span>。歷經一個月專題實戰，從期初企劃報告到期末成果展，完整淬鍊實戰能力！
-        </p>
+
+      <!-- 期別篩選頁籤 (期別由 CMS 資料動態推導，由新到舊排列) -->
+      <div v-if="!props.limit && batchTabs.length > 2" class="mb-8">
+        <SegmentedNav
+          v-model="activeBatch"
+          :items="batchTabs"
+          variant="tab"
+          accent="cyan"
+          id-prefix="showcase-batch"
+          aria-label="依期別篩選專題作品"
+        />
       </div>
 
       <!-- 作品網格清單 (以頁碼 key 驅動平滑淡入淡出轉場) -->
       <Transition name="page-fade" mode="out-in">
-        <div id="showcase-cards-grid" :key="currentPage" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div id="showcase-cards-grid" :key="`${activeBatch}-${currentPage}`" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <div
-            v-for="(project, index) in displayedProjects"
+            v-for="project in displayedProjects"
             :key="project.id"
             class="showcase-card h-84 perspective-1000 group cursor-pointer rounded-3xl focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none transform-gpu"
             tabindex="0"
@@ -49,12 +50,13 @@
                     @error="handleImgError(project)"
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div v-else class="w-full h-full flex items-center justify-center text-4xl bg-gradient-to-br from-slate-800 to-slate-900 text-cyan-400 font-black">
-                    💻
+                  <div v-else class="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 text-cyan-400">
+                    <Code2 class="w-10 h-10" :stroke-width="1.75" aria-hidden="true" />
                   </div>
 
-                  <div class="absolute bottom-2 right-2 px-2.5 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-sm text-slate-200 font-mono">
-                    👁️ {{ project.view_count }} 次瀏覽
+                  <div class="absolute bottom-2 right-2 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md text-sm text-slate-200 flex items-center gap-1.5">
+                    <Eye class="w-4 h-4" :stroke-width="1.75" aria-hidden="true" />
+                    <span>{{ project.view_count }} 次瀏覽</span>
                   </div>
                 </div>
 
@@ -73,9 +75,8 @@
                     <span class="text-sm text-slate-300 font-semibold">
                       {{ project.batch_tag }}
                     </span>
-                    <span class="text-sm text-cyan-400 font-bold group-hover:translate-x-0.5 transition-transform flex items-center space-x-1">
-                      <span>查看 Demo</span>
-                      <span>↷</span>
+                    <span class="text-sm text-cyan-400 font-bold flex items-center gap-1">
+                      <span>查看詳情</span>
                     </span>
                   </div>
                 </div>
@@ -86,10 +87,6 @@
                 <!-- 頂部流光光暈線 -->
                 <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
 
-                <!-- 角落序號水印 (01~08) -->
-                <div class="absolute -right-2 -bottom-4 text-7xl font-mono font-black text-slate-800/20 group-hover:text-cyan-500/10 transition-colors select-none pointer-events-none">
-                  {{ String(index + 1).padStart(2, '0') }}
-                </div>
 
                 <div class="relative z-10">
                   <span class="px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-sm font-bold">
@@ -101,9 +98,6 @@
                   <div class="text-sm text-slate-300 mb-2">
                     作者：<strong class="text-white">{{ project.student_name }}</strong>
                   </div>
-                  <div class="text-sm text-slate-300 font-medium">
-                    所屬期別：{{ project.batch_tag }}
-                  </div>
                 </div>
 
                 <div class="space-y-2 pt-2 relative z-10">
@@ -114,16 +108,18 @@
                     :tabindex="flippedIds.has(project.id) ? 0 : -1"
                     :aria-label="`${project.project_name} 線上即時展示 Demo（另開新分頁）`"
                     @click.stop="handleView(project.id)"
-                    class="w-full py-2.5 rounded-xl text-center font-bold text-sm text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 transition-all flex items-center justify-center space-x-1.5 focus-visible:ring-2 focus-visible:ring-white focus:outline-none cursor-pointer"
+                    class="w-full min-h-[44px] rounded-xl text-center font-bold text-sm text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 transition-all flex items-center justify-center space-x-1.5 focus-visible:ring-2 focus-visible:ring-white focus:outline-none cursor-pointer"
                   >
-                    <span>🌐 線上即時展示 (Demo) ↗</span>
+                    <Globe class="w-4 h-4 shrink-0" :stroke-width="1.75" aria-hidden="true" />
+                    <span>線上即時展示 (Demo)</span>
+                    <ExternalLink class="w-3.5 h-3.5 shrink-0" :stroke-width="1.75" aria-hidden="true" />
                   </a>
                   <button
                     type="button"
                     :tabindex="flippedIds.has(project.id) ? 0 : -1"
                     aria-label="返回正面卡片"
                     @click.stop="toggleFlip(project.id)"
-                    class="w-full py-1.5 rounded-xl text-center font-medium text-sm text-slate-300 hover:text-white bg-slate-800/40 hover:bg-slate-800 transition-colors focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none"
+                    class="w-full min-h-[44px] rounded-xl text-center font-medium text-sm text-slate-300 hover:text-white bg-slate-800/40 hover:bg-slate-800 transition-colors focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none"
                   >
                     返回正面
                   </button>
@@ -142,7 +138,7 @@
         <!-- 頁面資訊摘要標籤 -->
         <div class="text-xs sm:text-sm text-slate-400 font-medium order-2 sm:order-1 flex items-center space-x-2">
           <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-          <span>共 <strong class="text-white font-mono font-bold">{{ store.projects.length }}</strong> 件專題作品 ｜ 每頁 8 件 ｜ 第 <strong class="text-cyan-400 font-mono">{{ currentPage }}</strong> / {{ totalPages }} 頁</span>
+          <span>共 <strong class="text-white font-bold">{{ filteredProjects.length }}</strong> 件專題作品 ｜ 每頁 8 件 ｜ 第 <strong class="text-cyan-400">{{ currentPage }}</strong> / {{ totalPages }} 頁</span>
         </div>
 
         <!-- 分頁切換按鈕群 (WAI-ARIA 導航規範) -->
@@ -152,7 +148,7 @@
             type="button"
             @click="goToPage(currentPage - 1)"
             :disabled="currentPage === 1"
-            class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border flex items-center space-x-1"
+            class="min-h-[44px] px-4 rounded-xl text-sm font-semibold transition-all border flex items-center gap-1.5"
             :class="[
               currentPage === 1
                 ? 'bg-slate-900/50 border-slate-800 text-slate-600 cursor-not-allowed'
@@ -160,7 +156,7 @@
             ]"
             aria-label="前往上一頁專案列表"
           >
-            <span>←</span>
+            <ChevronLeft class="w-4 h-4" :stroke-width="2" aria-hidden="true" />
             <span>上一頁</span>
           </button>
 
@@ -173,7 +169,7 @@
               @click="goToPage(page)"
               :aria-current="currentPage === page ? 'page' : undefined"
               :aria-label="`前往第 ${page} 頁`"
-              class="w-10 h-10 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center font-mono"
+              class="w-11 h-11 rounded-xl text-sm font-bold transition-all flex items-center justify-center"
               :class="[
                 currentPage === page
                   ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30 ring-2 ring-cyan-400 scale-105'
@@ -189,7 +185,7 @@
             type="button"
             @click="goToPage(currentPage + 1)"
             :disabled="currentPage === totalPages"
-            class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border flex items-center space-x-1"
+            class="min-h-[44px] px-4 rounded-xl text-sm font-semibold transition-all border flex items-center gap-1.5"
             :class="[
               currentPage === totalPages
                 ? 'bg-slate-900/50 border-slate-800 text-slate-600 cursor-not-allowed'
@@ -198,7 +194,7 @@
             aria-label="前往下一頁專案列表"
           >
             <span>下一頁</span>
-            <span>→</span>
+            <ChevronRight class="w-4 h-4" :stroke-width="2" aria-hidden="true" />
           </button>
         </nav>
       </div>
@@ -209,7 +205,7 @@
           to="/showcase"
           class="inline-flex items-center justify-center px-8 py-4 rounded-2xl font-bold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700/80 shadow-lg hover:border-cyan-500/50 hover:text-cyan-300 transition-all focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none"
         >
-          查看全部學員專題成果作品集 →
+          查看全部學員專題成果
         </router-link>
       </div>
     </div>
@@ -218,6 +214,8 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { Eye, Globe, ExternalLink, Code2, ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import SegmentedNav, { type SegmentedNavItem } from '@/components/common/SegmentedNav.vue'
 import { createScrollStagger, gsap } from '@/utils/motion'
 import { useCmsStore } from '@/stores/useCmsStore'
 import type { StudentProject } from '@/types'
@@ -236,6 +234,7 @@ const props = withDefaults(
 
 const store = useCmsStore()
 const currentPage = ref(1)
+const activeBatch = ref(0)
 const flippedIds = ref(new Set<number>())
 const brokenProjectImages = ref(new Set<number>())
 const fallbackMap = ref<Record<number, string>>({})
@@ -264,16 +263,50 @@ let scrollTriggerCtx: ReturnType<typeof createScrollStagger> | null = null
 
 // 總頁數計算 (每 8 個為一頁)
 const totalPages = computed(() => {
-  return Math.ceil(store.projects.length / PAGE_SIZE) || 1
+  return Math.ceil(filteredProjects.value.length / PAGE_SIZE) || 1
 })
 
 // 當前頁面展示之專案清單 (8 個為一頁)
+// 依 CMS 的 batch_tag 分組，並以年份由新到舊排列（最近一屆的作品先呈現）
+const batchGroups = computed(() => {
+  const grouped = new Map<string, StudentProject[]>()
+  for (const project of store.projects) {
+    const tag = project.batch_tag || '未分期'
+    if (!grouped.has(tag)) grouped.set(tag, [])
+    grouped.get(tag)!.push(project)
+  }
+  return Array.from(grouped, ([tag, items]) => ({ tag, items, year: Number.parseInt(tag, 10) || 0 })).sort(
+    (a, b) => b.year - a.year,
+  )
+})
+
+const sortedProjects = computed(() => batchGroups.value.flatMap((group) => group.items))
+
+const batchTabs = computed<SegmentedNavItem[]>(() => [
+  { key: 'all', label: '全部', badge: String(store.projects.length) },
+  ...batchGroups.value.map((group) => ({
+    key: group.tag,
+    label: group.tag,
+    badge: String(group.items.length),
+  })),
+])
+
+const filteredProjects = computed(() =>
+  activeBatch.value === 0 ? sortedProjects.value : batchGroups.value[activeBatch.value - 1]?.items || [],
+)
+
 const displayedProjects = computed(() => {
   if (props.limit && props.limit > 0) {
-    return store.projects.slice(0, props.limit)
+    return sortedProjects.value.slice(0, props.limit)
   }
   const startIndex = (currentPage.value - 1) * PAGE_SIZE
-  return store.projects.slice(startIndex, startIndex + PAGE_SIZE)
+  return filteredProjects.value.slice(startIndex, startIndex + PAGE_SIZE)
+})
+
+// 切換期別後回到第一頁，避免停在不存在的頁碼
+watch(activeBatch, () => {
+  currentPage.value = 1
+  animatePageChange()
 })
 
 function initStaggerAnimation() {
