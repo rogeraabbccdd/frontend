@@ -61,7 +61,7 @@
 								<span
 									class="font-extrabold tracking-tighter sm:tracking-tight text-white group-hover:text-cyan-400 transition-colors leading-tight whitespace-nowrap text-sm min-[375px]:text-base sm:text-lg lg:text-xl shrink-0"
 								>
-									{{ store.settings?.site_title || '泰山職訓－前端網頁技術與AI應用' }}
+									<span class="sm:hidden">{{ brandTitleFull }}</span><span class="hidden sm:inline">{{ brandTitleShort }}</span>
 								</span>
 							</div>
 							<span class="hidden sm:block text-xs sm:text-sm text-slate-400 font-medium leading-none mt-1 truncate">
@@ -189,7 +189,7 @@
 									<span
 										class="font-extrabold tracking-tighter sm:tracking-tight text-white group-hover:text-cyan-400 transition-colors leading-tight whitespace-nowrap text-sm min-[375px]:text-base sm:text-lg lg:text-xl shrink-0"
 									>
-										{{ store.settings?.site_title || '泰山職訓－前端網頁技術與AI應用' }}
+										<span class="sm:hidden">{{ brandTitleFull }}</span><span class="hidden sm:inline">{{ brandTitleShort }}</span>
 									</span>
 								</div>
 								<span class="hidden sm:block text-xs sm:text-sm text-slate-400 font-medium leading-none mt-1 truncate">
@@ -348,6 +348,14 @@ function handleLogoError(e: Event) {
 		img.src = defaultLogo
 	}
 }
+
+// 副標（sm 以上顯示）已標明「泰山職業訓練場」，該斷點的主標題去除重複的機構前綴，只留課程名稱
+const brandTitleFull = computed(() => store.settings?.site_title || '泰山職訓－前端網頁技術與AI應用')
+const brandTitleShort = computed(() => {
+	const title = brandTitleFull.value
+	const dashIndex = title.indexOf('－') !== -1 ? title.indexOf('－') : title.indexOf('-')
+	return dashIndex !== -1 ? title.slice(dashIndex + 1) : title
+})
 
 const admissionBadge = computed(() => getNavbarAdmissionBadge(store.batches))
 
