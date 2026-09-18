@@ -84,11 +84,11 @@
           :class="[
             isBatchEnded(batch)
               ? (isCelebrationBatch(batch)
-                  ? 'border-emerald-500/60 bg-slate-900/90 shadow-2xl shadow-emerald-950/50 ring-1 ring-emerald-500/30'
+                  ? 'border-emerald-500/35 bg-slate-900/80 shadow-xl shadow-emerald-950/35 ring-1 ring-emerald-500/15'
                   : 'bg-slate-950/45 border-slate-800/40 opacity-60 hover:opacity-85 grayscale-[40%] hover:grayscale-0 shadow-none')
               : (isBatchUrgentClosing(batch)
                   ? 'border-amber-500/70 bg-slate-900/90 shadow-2xl shadow-amber-950/60 ring-1 ring-amber-400/50'
-                  : 'card-subsurface-glow bg-slate-900/70 hover:bg-slate-900/90 border-slate-800/90 shadow-xl shadow-slate-950/60')
+                  : 'border-cyan-500/45 bg-slate-900/85 hover:bg-slate-900/95 shadow-2xl shadow-cyan-950/50 ring-1 ring-cyan-400/30 hover:ring-cyan-400/55 hover:border-cyan-500/65')
           ]"
         >
           <!-- 頂部流光光暈線 (結訓慶典翡翠光輝、緊急倒數琥珀金光、活躍班級青色微光) -->
@@ -102,7 +102,7 @@
           ></div>
           <div
             v-else-if="!isBatchEnded(batch)"
-            class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            class="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_12px_rgba(34,211,238,0.8)] pointer-events-none"
           ></div>
 
 
