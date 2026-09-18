@@ -4,90 +4,89 @@
 		:class="[
 			hideHeader
 				? 'py-6 sm:py-10 bg-transparent relative'
-				: 'py-10 sm:py-16 lg:py-24 xl:py-28 bg-transparent relative overflow-hidden',
+				: 'section-shell bg-transparent relative overflow-hidden',
 		]"
 	>
-		<!-- 背景光暈 -->
-		<div
-			class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"
-		></div>
-		<div
-			class="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"
-		></div>
 
 		<div class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12 relative z-10 w-full">
 			<!-- 區塊標題 (僅在未隱藏標頭時渲染) -->
-			<div v-if="!hideHeader" class="text-center max-w-4xl mx-auto mb-6 sm:mb-12 lg:mb-14">
-				<div
-					class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-sm font-bold uppercase tracking-wider shadow-sm mb-3"
-				>
-					<span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
-					<span>Development Tools ｜ 技術與工具</span>
-				</div>
-				<h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight text-balance">
+			<div v-if="!hideHeader" class="section-head text-center max-w-4xl mx-auto">
+				<h2 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-tight text-balance">
 					你會接觸到哪些技術？
 				</h2>
 				<p
-					class="text-slate-400 mt-4 text-base sm:text-lg max-w-4xl xl:max-w-5xl mx-auto leading-relaxed text-pretty text-center"
+					class="hidden sm:block text-slate-400 mt-4 text-base sm:text-lg max-w-4xl mx-auto leading-relaxed text-pretty text-center"
 				>
-					技術不是一串需要背下來的英文單字。它們不是需要背下來的名詞，而是你完成作品時會真正用到的工具。你會依照學習階段，逐步接觸不同領域的技術。
+					這些都是做作品時真的會用到的工具。
 				</p>
 			</div>
 
-			<!-- 手機端橫向滑動提示 (桌機隱藏) -->
-			<div
-				v-if="!hideHeader"
-				class="flex sm:hidden items-center justify-center gap-2 text-base font-bold text-cyan-400 -mt-2 mb-4"
-			>
-				<span>👈 左右滑動瀏覽 8 大核心技術 👉</span>
-			</div>
+			<div class="max-w-6xl mx-auto">
+				<!-- 技術分類頁籤 (分類與數量完全由 CMS category_tab 動態推導) -->
+				<SegmentedNav
+					v-if="tabs.length > 1"
+					v-model="active"
+					:items="tabs"
+					variant="tab"
+					accent="cyan"
+					id-prefix="tech-stack"
+					aria-label="技術分類"
+				/>
 
-			<!-- 1. 8 大核心技術卡片網格 (手機橫向滑軌，桌機 xl: 4 欄) -->
-			<div
-				id="tech-cards-grid"
-				class="flex sm:grid sm:grid-cols-2 xl:grid-cols-4 overflow-x-auto sm:overflow-x-visible snap-x snap-mandatory scroll-smooth no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 gap-4 sm:gap-6 pb-4 sm:pb-0 mb-8"
-			>
+				<!-- 目前分類的技術卡片 -->
 				<div
-					v-for="(card, index) in store.techCards"
-					:key="card.id"
-					class="tech-card card-subsurface-glow relative rounded-3xl p-5 sm:p-6 bg-slate-900/80 backdrop-blur-xl border border-slate-800/90 shadow-xl shadow-slate-950/60 flex flex-col justify-between overflow-hidden cursor-default w-[78vw] max-w-[320px] shrink-0 snap-start sm:w-full sm:max-w-none sm:shrink"
+					id="tech-stack-panel"
+					role="tabpanel"
+					:aria-labelledby="`tech-stack-tab-${active}`"
+					class="mt-5 sm:mt-6"
 				>
-					<!-- 角落序號水印 (01~08) -->
-					<div
-						class="absolute -right-2 -bottom-4 text-6xl sm:text-7xl font-mono font-black text-slate-800/20 select-none pointer-events-none"
-					>
-						{{ String(index + 1).padStart(2, '0') }}
-					</div>
-
-					<div>
-						<div class="flex items-center justify-between mb-5">
+					<Transition name="tech-fade" mode="out-in">
+						<div
+							:key="activeGroup.tab"
+							class="grid gap-4 sm:gap-6"
+							:class="gridColumns"
+						>
 							<div
-								class="w-12 h-12 rounded-2xl bg-slate-800 border border-slate-700/80 flex items-center justify-center text-2xl shadow-inner"
+								v-for="card in activeGroup.cards"
+								:key="card.id"
+								class="card-subsurface-glow relative rounded-3xl p-5 sm:p-7 bg-slate-900/80 backdrop-blur-xl border border-slate-800/90 shadow-xl shadow-slate-950/60 overflow-hidden hover:border-cyan-500/50 transition-[border-color,box-shadow] duration-300"
 							>
-								{{ getTechIcon(card.tech_name) }}
+								<div class="flex items-start gap-4 sm:gap-5">
+									<!-- 放大技術圖示，壓低整體文字比重 -->
+									<div
+										class="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-2xl bg-slate-800 border border-slate-700/80 flex items-center justify-center shadow-inner"
+										aria-hidden="true"
+									>
+										<svg
+											v-if="getTechIcon(card.tech_name).path"
+											viewBox="0 0 24 24"
+											class="w-8 h-8 sm:w-10 sm:h-10"
+											:style="{ color: getTechIcon(card.tech_name).color }"
+											fill="currentColor"
+										>
+											<path :d="getTechIcon(card.tech_name).path" />
+										</svg>
+										<component
+											v-else
+											:is="getTechIcon(card.tech_name).component"
+											class="w-8 h-8 sm:w-10 sm:h-10"
+											:style="{ color: getTechIcon(card.tech_name).color }"
+											:stroke-width="1.75"
+										/>
+									</div>
+
+									<div class="min-w-0">
+										<h3 class="text-xl font-extrabold text-white mb-2 tracking-tight">
+											{{ card.tech_name }}
+										</h3>
+										<p class="text-base text-slate-300 leading-relaxed text-pretty">
+											{{ card.description }}
+										</p>
+									</div>
+								</div>
 							</div>
-							<span
-								class="px-3.5 py-1 rounded-2xl bg-cyan-500/10 text-cyan-300 font-bold text-sm border border-cyan-500/30 tracking-wide"
-							>
-								{{ card.category_tab || '核心必修' }}
-							</span>
 						</div>
-
-						<h3 class="text-xl font-extrabold text-white mb-2.5 tracking-tight">
-							{{ card.tech_name }}
-						</h3>
-
-						<p class="text-base text-slate-300 leading-relaxed text-pretty text-justify">
-							{{ card.description }}
-						</p>
-					</div>
-
-					<div
-						class="pt-5 mt-6 border-t border-slate-800/80 flex items-center justify-between text-sm text-slate-300 font-mono"
-					>
-						<span>核心能力</span>
-						<span class="text-cyan-400 font-bold">專題實作</span>
-					</div>
+					</Transition>
 				</div>
 			</div>
 		</div>
@@ -95,7 +94,18 @@
 </template>
 
 <script setup lang="ts">
-import { useScrollStagger } from '@/composables/useScrollStagger'
+import { computed, ref, watch, type Component } from 'vue'
+import { Palette, Code2 } from 'lucide-vue-next'
+import {
+	siHtml5,
+	siBootstrap,
+	siJavascript,
+	siVuedotjs,
+	siAxios,
+	siNodedotjs,
+	siGithub,
+} from 'simple-icons'
+import SegmentedNav, { type SegmentedNavItem } from '@/components/common/SegmentedNav.vue'
 import { useCmsStore } from '@/stores/useCmsStore'
 
 withDefaults(
@@ -109,29 +119,89 @@ withDefaults(
 
 const store = useCmsStore()
 
-// 8 大技術棧卡片一氣呵成交錯波浪微升 (透過通用 Composable 統一調度生命週期與快取更新)
-useScrollStagger(
-	'#tech-cards-grid .tech-card',
-	'#tech-stack',
-	{
-		yOffset: 28,
-		duration: 0.85,
-		stagger: 0.06,
-		ease: 'power1.out',
-		start: 'top 85%',
+const FALLBACK_TAB = '核心必修'
+
+// 依 CMS category_tab 動態分組，維持後台為唯一真實來源，前台不硬編碼任何分類清單
+const groups = computed(() => {
+	const ordered: { tab: string; cards: typeof store.techCards }[] = []
+	for (const card of store.techCards) {
+		const tab = card.category_tab || FALLBACK_TAB
+		const existing = ordered.find((group) => group.tab === tab)
+		if (existing) existing.cards.push(card)
+		else ordered.push({ tab, cards: [card] })
+	}
+	return ordered
+})
+
+const active = ref(0)
+
+// CMS 非同步載入或分類數量變動時，將選取索引夾回有效範圍，避免面板空白
+watch(
+	() => groups.value.length,
+	(length) => {
+		if (active.value > length - 1) active.value = 0
 	},
-	() => store.techCards.length,
 )
 
-function getTechIcon(name: string): string {
-	if (name.includes('HTML') || name.includes('CSS')) return '🌐'
-	if (name.includes('Tailwind') || name.includes('Bootstrap')) return '🎨'
-	if (name.includes('Photoshop') || name.includes('Adobe') || name.includes('視覺')) return '🖌️'
-	if (name.includes('JavaScript') || name.includes('ES6')) return '⚡'
-	if (name.includes('Vue') || name.includes('Pinia')) return '💚'
-	if (name.includes('API') || name.includes('Axios')) return '🔄'
-	if (name.includes('Node') || name.includes('MongoDB')) return '🟩'
-	if (name.includes('Git') || name.includes('GitHub')) return '🐙'
-	return '🚀'
+const tabs = computed<SegmentedNavItem[]>(() =>
+	groups.value.map((group) => ({
+		key: group.tab,
+		label: group.tab,
+		badge: String(group.cards.length),
+	})),
+)
+
+const activeGroup = computed(() => groups.value[active.value] ?? { tab: '', cards: [] })
+
+const gridColumns = computed(() => {
+	const count = activeGroup.value.cards.length
+	if (count <= 1) return 'grid-cols-1 max-w-2xl mx-auto'
+	if (count === 2) return 'grid-cols-1 md:grid-cols-2'
+	return 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
+})
+
+// 技術品牌圖示：優先使用 Simple Icons 官方 logo，無品牌圖示者退回 Lucide 通用圖示
+// 深色底不可讀的品牌色（GitHub 近黑、Axios 深紫）以可讀色票覆寫
+type TechIcon = { path?: string; component?: Component; color: string }
+
+function brand(icon: { path: string; hex: string }, color?: string): TechIcon {
+	return { path: icon.path, color: color || `#${icon.hex}` }
+}
+
+function getTechIcon(name: string): TechIcon {
+	if (name.includes('HTML') || name.includes('CSS')) return brand(siHtml5)
+	if (name.includes('Tailwind') || name.includes('Bootstrap')) return brand(siBootstrap)
+	if (name.includes('Photoshop') || name.includes('Adobe') || name.includes('視覺'))
+		return { component: Palette, color: '#31A8FF' }
+	if (name.includes('JavaScript') || name.includes('ES6')) return brand(siJavascript)
+	if (name.includes('Vue') || name.includes('Pinia')) return brand(siVuedotjs)
+	if (name.includes('API') || name.includes('Axios')) return brand(siAxios, '#8B6CF0')
+	if (name.includes('Node') || name.includes('MongoDB')) return brand(siNodedotjs)
+	if (name.includes('Git') || name.includes('GitHub')) return brand(siGithub, '#E6EDF3')
+	return { component: Code2, color: '#94A3B8' }
 }
 </script>
+
+<style scoped>
+.tech-fade-enter-active,
+.tech-fade-leave-active {
+	transition: opacity 0.24s ease-out, transform 0.24s ease-out;
+}
+
+.tech-fade-enter-from {
+	opacity: 0;
+	transform: translateY(10px);
+}
+
+.tech-fade-leave-to {
+	opacity: 0;
+	transform: translateY(-6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.tech-fade-enter-active,
+	.tech-fade-leave-active {
+		transition: none;
+	}
+}
+</style>
