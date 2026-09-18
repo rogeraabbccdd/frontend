@@ -104,8 +104,8 @@
 
 				<!-- 溫馨提示與免責聲明 (電腦版大器單行不斷行，手機版自適應換行) -->
 				<div class="pt-6 border-t border-slate-800/60 max-w-5xl mx-auto">
-					<p class="text-base text-slate-400 font-medium whitespace-normal lg:whitespace-nowrap flex items-start justify-center gap-2">
-						<Info class="w-5 h-5 shrink-0 mt-0.5 text-cyan-400" :stroke-width="1.75" aria-hidden="true" />
+					<p class="text-base text-amber-200/90 font-medium whitespace-normal lg:whitespace-nowrap flex items-start justify-center gap-2">
+						<TriangleAlert class="w-5 h-5 shrink-0 mt-0.5 text-amber-400" :stroke-width="1.75" aria-hidden="true" />
 						<span>正式報名一律透過勞動部「台灣就業通」官方網站辦理，本站不收集任何個人資料。</span>
 					</p>
 				</div>
@@ -115,7 +115,7 @@
 </template>
 
 <script setup lang="ts">
-import { Info } from 'lucide-vue-next'
+import { TriangleAlert } from 'lucide-vue-next'
 import { useSeoMeta } from '@/composables/useSeoMeta'
 import AudienceSection from '@/components/sections/AudienceSection.vue'
 import FacilitiesSection from '@/components/sections/FacilitiesSection.vue'
