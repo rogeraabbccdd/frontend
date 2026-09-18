@@ -56,7 +56,7 @@ print(f"[OK] 站台全域設定已對齊 (GA4: {setting.ga4_measurement_id})")
 if not Carousel.objects.exists():
     carousels_data = [
         (1, "從零開始的前端工程師養成", "政府自辦 920 小時紮實培訓 ｜ 待業者完全免費 ｜ 輔導就業與生活津貼", "泰山職訓前端網頁技術與AI應用班主視覺", "立即線上報名", "#batches", 1),
-        (2, "現代前端框架與 AI 協同開發", "一人兩機雙螢幕教學設備 ｜ 打造 AI 應用的優秀作品集 ｜ 跨領域轉職最佳起點", "泰山職訓雙螢幕教室實境", "立即線上報名", "#batches", 2),
+        (2, "現代前端框架與 AI 協同開發", "一人兩機雙螢幕教學設備 ｜ 做出能拿去面試的 AI 應用作品 ｜ 跨領域轉職的起點", "泰山職訓雙螢幕教室實境", "立即線上報名", "#batches", 2),
         (3, "打造專屬的個人全端作品集", "獨立完成全端架構 ｜ 實踐 AI 工具輔助開發 ｜ 累積求職競爭力的實戰作品集", "泰山職訓跨領域轉職前端網頁成果", "立即線上報名", "#batches", 3),
     ]
     for cid, title, sub, alt, cta, link, order in carousels_data:
@@ -144,7 +144,7 @@ else:
 if not TechCard.objects.exists():
     techs = [
         ("基礎與排版", "HTML5 & CSS3", "現代網頁語意標籤與進階排版"),
-        ("基礎與排版", "Bootstrap & Tailwind", "現代前端 UI 框架、快速建立高質感響應式 (RWD) 介面"),
+        ("基礎與排版", "Bootstrap & Tailwind", "現代前端 UI 框架，快速建立響應式 (RWD) 介面"),
         ("視覺與設計", "Adobe Photoshop & AI", "影像處理修圖、Icon 圖示設計與 UI/UX 視覺傳達流程"),
         ("核心動態技術", "JavaScript (ES6+)", "原生 DOM 操作、非同步 Promise / Async-Await 與現代語法"),
         ("核心動態技術", "Vue.js 3 & Pinia", "組件化架構、Composition API、Vue Router 路由與狀態管理"),
@@ -168,7 +168,7 @@ if not Facility.objects.exists():
         sort_order=1,
         facility_name="寬敞明亮專屬實作空間",
         subtitle="雙螢幕教學設備",
-        description="專屬獨立座位與高速光纖網路，提供 920 小時專注沉浸式程式開發環境。一人配置雙螢幕電腦，邊看講師即時示範邊同步動手編程，學習不漏拍！",
+        description="專屬獨立座位，一人配置雙螢幕電腦，可邊看講師示範邊同步動手實作。",
         image="facilities/learning_ijciKln_09KM7k0_ddXbwFz.webp",
         image_alt="寬敞明亮專屬實作空間、雙螢幕教學設備",
         is_active=True,
@@ -177,7 +177,7 @@ if not Facility.objects.exists():
         sort_order=2,
         facility_name="整潔舒適專屬用餐空間",
         subtitle="完善生活休憩設施",
-        description="寬敞木質長桌搭配舒適空調，提供課間放鬆交流的休憩環境。現場備有冷藏冰箱與專業閱覽多功能收納書櫃，方便餐點補給與翻書充電，休息、充電一次到位！",
+        description="寬敞木質長桌搭配舒適空調，現場備有冷藏冰箱與多功能收納書櫃。",
         image="facilities/lunch_g71Ci6n_NsJ8XsZ_mJ12g5T.webp",
         image_alt="整潔舒適專屬用餐空間、完善生活休憩設施",
         is_active=True,
@@ -186,44 +186,55 @@ if not Facility.objects.exists():
 else:
     print("[INFO] 教學環境設施已存在，保留既有設定")
 
-# 8. 14 組前後端分離＋資料庫學員專案作品
+# 8. 22 組前後端分離＋資料庫學員專案作品
 if not StudentProject.objects.exists():
     projects = [
-        ("蔡昀容", "夢百貨", "https://blackcat0708.github.io/DreamDepartmentStore-front/#/", True),
-        ("董元琪", "Matching TRPG", "https://chichitung.github.io/MatchingTRPG-front/#/", True),
-        ("仲崇安", "Voice Land", "https://josh19961201.github.io/VoiceLand_front/#/", True),
-        ("楊詠茜", "桌下吧", "https://cloris222.github.io/quasar-project/#/", True),
-        ("黃姿瑄", "團購趣", "https://a733181.github.io/2022-buytogether/#/", False),
-        ("許凱炫", "一個地方", "https://qweasd333ee.github.io/a-place-bar-front/", False),
-        ("徐嘉伶", "AZ.ZERO", "https://lisia229.github.io/AZFront/#/", False),
-        ("郭思緯", "Show Time", "https://kkone0275.github.io/top-free-time-front/#/", False),
-        ("王政文", "Ocean", "https://nailshort.github.io/Ocean-front/#/", False),
-        ("胡俊宇", "揪遊 (JoYo)", "https://lilmax922.github.io/JoYo-Front/#/", False),
-        ("張雅涵", "Sunday", "https://vvn719.github.io/SUNDAY-vue-project/#/", False),
-        ("黃佳琦", "綠善生活農場", "https://gagiherdesign.github.io/susi-front/#/", False),
-        ("蔡文瑜", "BCoffee", "https://pato830729.github.io/BCcoffee-front/#/", False),
-        ("蘇俞甄", "MAUNA COFFEE", "https://a5a5aa.github.io/TSFP-front/#/", False),
+        ("蔡昀容", "夢百貨", "110年第二期", "https://blackcat0708.github.io/DreamDepartmentStore-front/#/", ""),
+        ("董元琪", "Matching TRPG", "111年第二期", "https://chichitung.github.io/MatchingTRPG-front/#/", ""),
+        ("仲崇安", "Voice Land", "111年第二期", "https://josh19961201.github.io/VoiceLand_front/#/", ""),
+        ("楊詠茜", "桌下吧", "111年第二期", "https://cloris222.github.io/quasar-project/#/", ""),
+        ("黃姿瑄", "團購趣", "111年第二期", "https://a733181.github.io/2022-buytogether/#/", ""),
+        ("許凱炫", "一個地方", "111年第二期", "https://qweasd333ee.github.io/a-place-bar-front/", ""),
+        ("徐嘉伶", "AZ.ZERO", "111年第二期", "https://lisia229.github.io/AZFront/#/", ""),
+        ("郭思緯", "Show Time", "111年第二期", "https://kkone0275.github.io/top-free-time-front/#/", ""),
+        ("王政文", "Ocean", "111年第二期", "https://nailshort.github.io/Ocean-front/#/", ""),
+        ("胡俊宇", "揪遊 (JoYo)", "111年第二期", "https://lilmax922.github.io/JoYo-Front/#/", ""),
+        ("張雅涵", "Sunday", "111年第二期", "https://vvn719.github.io/SUNDAY-vue-project/#/", ""),
+        ("黃佳琦", "綠善生活農場", "111年第二期", "https://gagiherdesign.github.io/susi-front/#/", ""),
+        ("蔡文瑜", "BCoffee", "111年第二期", "https://pato830729.github.io/BCcoffee-front/#/", ""),
+        ("蘇俞甄", "MAUNA COFFEE", "111年第二期", "https://a5a5aa.github.io/TSFP-front/#/", ""),
+        ("林佳霓", "Sanvia 重構情緒價值的場域", "114年第一期", "https://ho-67.github.io/SANVIA_FRONT/#/", "https://ho-67.github.io/SANVIA_FRONT/#/"),
+        ("許庭瑋", "JIANICE", "114年第一期", "https://yunahsuya.github.io/JIANICE-vuetify-project/#/", "https://yunahsuya.github.io/JIANICE-vuetify-project/#/"),
+        ("鄭紫明", "毛孩救援站", "114年第一期", "https://ziming224.github.io/project--vuetify/#/", "https://ziming224.github.io/project--vuetify/#/"),
+        ("許峻誠", "MuscleMap", "114年第一期", "https://milktea910.github.io/MuscleMap/#/", "https://milktea910.github.io/MuscleMap/#/"),
+        ("李晨嫣", "打工換宿媒合平台", "114年第一期", "https://startina803.github.io/IsandRoaming-front/#/", "https://startina803.github.io/IsandRoaming-front/#/"),
+        ("郭建廷", "插畫家的風格網站", "114年第一期", "https://judywangart.com/#/", "https://judywangart.com/#/"),
+        ("詹薏靜", "JIOVOLLEY", "114年第一期", "https://jlo-1992.github.io/jiovolley/#/", "https://jlo-1992.github.io/jiovolley/#/"),
+        ("謝昇運", "迷因典", "114年第一期", "https://memedam.com/", "https://memedam.com/"),
     ]
-    for idx, (name, title, demo, feat) in enumerate(projects, 1):
+    for idx, (name, title, batch, demo, github) in enumerate(projects, 1):
         StudentProject.objects.create(
             student_name=name,
-            batch_tag="前端專班結訓成果",
+            batch_tag=batch,
             project_name=title,
             image_alt=f"{name} 專案作品 - {title}",
             demo_url=demo,
-            is_featured=feat,
+            github_url=github,
+            is_featured=False,
             sort_order=idx
         )
-    print("[OK] 14 組前後端分離＋資料庫學員專題作品建立完成")
+    print("[OK] 22 組學員專案作品建立完成")
+else:
+    print("[INFO] 學員專案作品已存在，保留既有設定")
 
 # 9. FAQ 常見問答
 if not FAQ.objects.exists():
     faqs = [
-        ("參訓資格", "完全沒有寫過程式或設計基礎，適合報名嗎？", "非常適合！本課程專為零基礎及跨領域轉職者設計，從最基礎的 HTML/CSS 排版與影像工具教起，循序漸進至 JavaScript 與 Vue.js 動態框架，只要具備學習熱忱皆可報名。"),
-        ("生活津貼", "受訓期間可以申請職業訓練生活津貼嗎？", "符合特定對象資格（如非自願離職者、中高齡待業者、獨力負擔家計者、身心障礙者、原住民等），經公立就業服務機構推介參訓，受訓期間每月可申請基本工資 60% 之職業訓練生活津貼！"),
+        ("參訓資格", "完全沒有寫過程式或設計基礎，適合報名嗎？", "適合。本課程為零基礎與跨領域轉職者設計，從 HTML/CSS 排版與影像工具教起，再進到 JavaScript 與 Vue.js。"),
+        ("生活津貼", "受訓期間可以申請職業訓練生活津貼嗎？", "符合特定對象資格（如非自願離職者、中高齡待業者、獨力負擔家計者、身心障礙者、原住民等），經公立就業服務機構推介參訓，受訓期間每月可申請基本工資 60% 之職業訓練生活津貼。"),
         ("參訓費用", "這門課程真的完全免費嗎？需要負擔其他材料費嗎？", "政府自辦職前訓練班，待業者經甄試錄取後，學費由政府全額補助（100% 免費）。"),
-        ("上課時間", "每天上課的時間與受訓時數為何？", "本班為日間全日制培訓，週一至週五 08:30 ~ 16:30（每天 8 小時），總受訓時數為 920 小時（包含 160 小時專題製作與輔導發表）。"),
-        ("就業輔導", "結訓前會提供履歷健檢與作品集指導嗎？", "會的！課程結訓前夕將由專業師資個別提供一對一履歷健檢、作品集面試優化指導，並舉辦專題成果發表會，協助學員以具備競爭力的完整作品集底氣十足接軌就業市場。")
+        ("上課時間", "每天上課的時間與受訓時數為何？", "本班為日間全日制培訓，平日白天 8:10~16:35，分四節：8:10~9:50、10:10~11:50、13:00~14:40、14:45~16:35。總受訓時數 920 小時（含 160 小時專題製作與輔導發表）。"),
+        ("就業輔導", "結訓前會提供履歷健檢與作品集指導嗎？", "會。課程最後階段由師資一對一提供履歷健檢與作品集面試指導，並舉辦專題成果發表會。")
     ]
     for idx, (cat, q, a) in enumerate(faqs, 1):
         FAQ.objects.create(

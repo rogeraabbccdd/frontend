@@ -221,7 +221,7 @@ class Facility(SoftDeleteModel):
 
 class StudentProject(SoftDeleteModel):
     student_name = models.CharField(max_length=100, verbose_name="學員姓名")
-    batch_tag = models.CharField(max_length=50, default="前端專班結訓成果", verbose_name="期別標籤")
+    batch_tag = models.CharField(max_length=50, blank=True, default="", verbose_name="期別標籤", help_text="例：114年第一期。留空則前台不顯示期別標籤。")
     project_name = models.CharField(max_length=150, verbose_name="專題作品名稱")
     cover_image = models.ImageField(upload_to="projects/", blank=True, null=True, verbose_name="作品首頁縮圖")
     image_alt = models.CharField(max_length=200, blank=True, verbose_name="縮圖替代文字")
