@@ -43,7 +43,7 @@
             <div class="text-sm text-slate-300 mt-1.5 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 leading-relaxed">
               <span>地址：{{ store.settings?.contact_address || '新北市泰山區貴子里致遠新村 55 之 1 號' }}</span>
               <span class="hidden sm:inline text-slate-600" aria-hidden="true">｜</span>
-              <span>電話：<a :href="`tel:${(store.settings?.contact_phone || '(02) 2901-8274').replace(/[^0-9]/g, '')}`" class="hover:text-cyan-400 transition-colors underline-offset-2">{{ store.settings?.contact_phone || '(02) 2901-8274' }}</a></span>
+              <span>電話：<a :href="`tel:${(store.settings?.contact_phone || '(02) 2901-8274').replace(/[^0-9]/g, '')}`" class="inline-flex items-center min-h-[44px] py-1 hover:text-cyan-400 transition-colors underline-offset-2 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none rounded">{{ store.settings?.contact_phone || '(02) 2901-8274' }}</a></span>
             </div>
           </div>
         </div>
@@ -52,13 +52,13 @@
         <div class="grid grid-cols-2 xs:grid-cols-3 sm:flex sm:flex-wrap items-center gap-2.5 sm:gap-x-5 sm:gap-y-2 text-base font-medium text-slate-300 w-full lg:w-auto pt-2 lg:pt-0 border-t border-slate-800/60 lg:border-t-0">
           <router-link to="/" class="hover:text-cyan-400 transition-colors py-1.5 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none rounded">課程特色</router-link>
           <span class="hidden sm:inline text-slate-600" aria-hidden="true">•</span>
-          <router-link to="/showcase" class="hover:text-cyan-400 transition-colors py-1.5 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none rounded">學員專題成果</router-link>
+          <router-link to="/showcase" class="hover:text-cyan-400 transition-colors py-1.5 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none rounded">專題成果</router-link>
           <span class="hidden sm:inline text-slate-600" aria-hidden="true">•</span>
-          <router-link to="/admission" class="hover:text-cyan-400 transition-colors py-1.5 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none rounded">招生期別與報名</router-link>
+          <router-link to="/admission" class="hover:text-cyan-400 transition-colors py-1.5 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none rounded">招生期別</router-link>
           <span class="hidden sm:inline text-slate-600" aria-hidden="true">•</span>
-          <router-link to="/community" class="hover:text-cyan-400 transition-colors py-1.5 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none rounded">Discord 線上諮詢</router-link>
+          <router-link to="/community" class="hover:text-cyan-400 transition-colors py-1.5 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none rounded">線上諮詢</router-link>
           <span class="hidden sm:inline text-slate-600" aria-hidden="true">•</span>
-          <router-link to="/faq" class="hover:text-cyan-400 transition-colors py-1.5 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none rounded">常見問題 FAQ</router-link>
+          <router-link to="/faq" class="hover:text-cyan-400 transition-colors py-1.5 focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none rounded">常見問題</router-link>
         </div>
       </div>
 

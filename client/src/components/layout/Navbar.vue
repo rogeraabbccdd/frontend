@@ -119,8 +119,7 @@
 						class="hidden sm:inline-flex items-center font-extrabold text-xs md:text-sm xl:text-base text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-105 active:scale-95 transition-all flex-shrink-0 px-3 md:px-4 xl:px-5 py-2 xl:py-2.5 rounded-xl"
 					>
 						<span class="md:hidden">招生報名</span>
-						<span class="hidden md:inline">立即查看招生期別</span>
-						<span class="ml-1">→</span>
+						<span class="hidden md:inline">立即報名</span>
 					</router-link>
 
 					<button
@@ -246,7 +245,6 @@
 							class="hidden sm:inline-flex items-center px-4 xl:px-5 py-2 xl:py-2.5 rounded-xl font-extrabold text-sm xl:text-base text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-105 active:scale-95 transition-all flex-shrink-0"
 						>
 							<span>{{ admissionBadge ? admissionBadge.ctaText : '立即查看招生資訊' }}</span>
-							<span class="ml-1">→</span>
 						</router-link>
 
 						<button
@@ -354,11 +352,11 @@ function handleLogoError(e: Event) {
 const admissionBadge = computed(() => getNavbarAdmissionBadge(store.batches))
 
 const navItems = [
-	{ name: '課程特色介紹', path: '/' },
-	{ name: '學員專題成果', path: '/showcase' },
-	{ name: '招生期別與報名', path: '/admission' },
-	{ name: 'Discord 線上諮詢', path: '/community' },
-	{ name: '常見問題 FAQ', path: '/faq' },
+	{ name: '課程特色', path: '/' },
+	{ name: '專題成果', path: '/showcase' },
+	{ name: '招生期別', path: '/admission' },
+	{ name: '線上諮詢', path: '/community' },
+	{ name: '常見問題', path: '/faq' },
 ]
 
 const navbarContainerClasses = computed(() => {
