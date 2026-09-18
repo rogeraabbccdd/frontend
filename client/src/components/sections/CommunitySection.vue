@@ -5,9 +5,9 @@
     <div class="absolute -bottom-32 left-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12 relative z-10 w-full">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-5xl mx-auto w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:items-start max-w-5xl mx-auto w-full">
         <!-- 左側：即時問答卡片與一鍵加入按鈕 -->
-        <div class="lg:col-span-6 space-y-6">
+        <div class="lg:col-span-6 flex flex-col gap-6">
           <div class="p-6 sm:p-7 rounded-3xl bg-indigo-950/40 backdrop-blur-md border border-indigo-500/30 shadow-xl shadow-indigo-950/30">
             <div class="flex items-center space-x-3 mb-4">
               <span class="w-12 h-12 shrink-0 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center" aria-hidden="true">
