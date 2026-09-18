@@ -62,14 +62,14 @@
       </div>
 
             <!-- 官方規範指引與免責聲明卡片 (加大字級更清晰易讀，寬度與手風琴一致置中) -->
-      <div class="mt-10 max-w-4xl mx-auto p-6 sm:p-8 rounded-3xl bg-slate-900/80 border border-cyan-500/30 shadow-xl shadow-slate-950/50 text-left flex items-start gap-4">
-        <span class="w-12 h-12 shrink-0 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center" aria-hidden="true">
-          <Info class="w-6 h-6 text-cyan-300" />
+      <div class="mt-10 max-w-4xl mx-auto p-6 sm:p-8 rounded-3xl bg-amber-950/25 border border-amber-500/45 shadow-xl shadow-amber-950/30 text-left flex items-start gap-4">
+        <span class="w-12 h-12 shrink-0 rounded-2xl bg-amber-500/15 border border-amber-500/40 flex items-center justify-center" aria-hidden="true">
+          <TriangleAlert class="w-6 h-6 text-amber-300" />
         </span>
         <div class="space-y-2.5 flex-1">
-          <span class="block text-base sm:text-lg font-black text-white tracking-tight">權益提醒</span>
-          <p class="text-base text-slate-300 leading-relaxed">
-            參訓資格、免費受訓審查、生活津貼與招生期程，<strong class="text-white font-bold">一律以台灣就業通的最新公告與簡章為準</strong>。
+          <span class="block text-base sm:text-lg font-black text-amber-200 tracking-tight">權益提醒</span>
+          <p class="text-base text-slate-200 leading-relaxed">
+            參訓資格、免費受訓審查、生活津貼與招生期程，<strong class="text-amber-100 font-bold">一律以台灣就業通的最新公告與簡章為準</strong>。
           </p>
         </div>
       </div>
@@ -80,7 +80,7 @@
 <script setup lang="ts">
 import { ref, onMounted, nextTick, watch, type Component } from 'vue'
 import {
-  Info,
+  TriangleAlert,
   UserCheck,
   Wallet,
   HandCoins,
