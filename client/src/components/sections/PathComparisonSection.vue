@@ -23,7 +23,7 @@
 					variant="tab"
 					accent="cyan"
 					id-prefix="path-comparison"
-					aria-label="三種學習路徑比較"
+					ariaLabel="三種學習路徑比較"
 				/>
 
 				<!-- 目前路徑內容面板 -->

@@ -22,7 +22,7 @@
 						accent="cyan"
 						hide-on-mobile
 					id-prefix="engineering-mindset"
-						aria-label="五階段工程心智"
+						ariaLabel="五階段工程心智"
 					/>
 
 					<!-- 進度軌 (以視覺長度回饋目前走到第幾階段) -->

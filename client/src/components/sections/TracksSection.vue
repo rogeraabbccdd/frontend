@@ -24,7 +24,7 @@
 					v-model="active"
 					:items="tracks"
 					id-prefix="tracks-starting-points"
-					aria-label="四大起點軌道"
+					ariaLabel="四大起點軌道"
 					columns="grid-cols-2 lg:grid-cols-4"
 				/>
 			</div>

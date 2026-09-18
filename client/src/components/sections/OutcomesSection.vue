@@ -23,7 +23,7 @@
 					v-model="active"
 					:items="takeaways"
 					id-prefix="outcomes"
-					aria-label="四大結訓收穫"
+					ariaLabel="四大結訓收穫"
 					columns="grid-cols-2 lg:grid-cols-4"
 				/>
 			</div>

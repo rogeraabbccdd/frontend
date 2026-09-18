@@ -21,7 +21,7 @@
 					accent="cyan"
 					hide-on-mobile
 					id-prefix="learning-path"
-					aria-label="四階段學習歷程"
+					ariaLabel="四階段學習歷程"
 				/>
 
 				<!-- 進度軌 (以視覺長度回饋目前走到第幾階段) -->

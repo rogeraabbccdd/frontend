@@ -30,7 +30,7 @@
 					variant="tab"
 					accent="cyan"
 					id-prefix="tech-stack"
-					aria-label="技術分類"
+					ariaLabel="技術分類"
 				/>
 
 				<!-- 目前分類的技術卡片 -->

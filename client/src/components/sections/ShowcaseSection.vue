@@ -10,7 +10,7 @@
           variant="tab"
           accent="cyan"
           id-prefix="showcase-batch"
-          aria-label="依期別篩選專題作品"
+          ariaLabel="依期別篩選專題作品"
         />
       </div>
 
