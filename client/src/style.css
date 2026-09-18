@@ -402,3 +402,80 @@
 	scrollbar-width: none;
 }
 
+
+/* ==========================================================================
+   區塊垂直節奏：隨視窗高度自適應 (Viewport-Height Rhythm)
+   --------------------------------------------------------------------------
+   全站內容區塊的上下留白與標題間距改以 vh 為基準縮放，確保在 768px 高的筆電
+   到 1080px 高的桌機上，每一區都能完整收進 100dvh，
+   作為後續套用 full page scroll 的前置條件。
+   Hero 有自身 min-h-[100dvh] 佈局，不納入本規則。
+   ========================================================================== */
+.section-shell {
+	padding-block: clamp(1.75rem, 5vh, 5rem);
+}
+
+.section-head {
+	margin-bottom: clamp(1rem, 3.2vh, 2.5rem);
+}
+
+/* 矮視窗（約 900px 以下）壓縮標題字級。
+   僅在 sm 以上寬度生效：手機為窄版直式，標題字級應由既有的 text-3xl 階梯決定，
+   若在此以 vh 放大反而會使標題折成多行。 */
+@media (min-width: 640px) and (max-height: 900px) {
+	.section-head h2 {
+		font-size: clamp(var(--font-size-3xl), 5.4vh, var(--font-size-6xl));
+		line-height: 1.2;
+	}
+}
+
+/* 教學環境實景相框：高度隨視窗收斂，避免矮視窗下整區溢出 100dvh */
+.facility-frame {
+	max-height: clamp(8rem, 26vh, 20rem);
+}
+
+/* 極矮視窗（約 720px 以下，如 360x640 舊款手機）：
+   進一步壓縮節奏，並收起標記為補充資訊的區塊，確保仍能收進 100dvh */
+@media (max-height: 720px) {
+	.section-shell {
+		padding-block: clamp(0.875rem, 2.6vh, 2.5rem);
+	}
+
+	.section-head {
+		margin-bottom: clamp(0.5rem, 1.6vh, 1.25rem);
+	}
+
+	.short-viewport-hide {
+		display: none !important;
+	}
+
+	.accordion-trigger {
+		padding-block: 0.625rem;
+	}
+
+	.accordion-icon {
+		width: 2.5rem;
+		height: 2.5rem;
+		font-size: var(--font-size-xl);
+	}
+
+	.facility-frame {
+		max-height: clamp(6rem, 20vh, 12rem);
+	}
+
+	.accordion-list.accordion-list > * + * {
+		margin-top: 0.5rem;
+	}
+}
+
+/* ==========================================================================
+   [測試中] 每區滿版 100dvh
+   --------------------------------------------------------------------------
+   為評估是否套用 full page scroll 而加入。將每個內容區塊撐滿一個視窗高度，
+   內容垂直置中。若決定不採用，整段刪除即可，不影響其他樣式。
+   ========================================================================== */
+.section-shell {
+	min-height: 100dvh;
+	display: flex;
+	align-items: center;
+}
