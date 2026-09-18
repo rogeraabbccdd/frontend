@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-white relative overflow-x-hidden w-full max-w-[100vw]">
+  <div class="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-white relative overflow-x-clip w-full max-w-[100vw]">
     <!-- 0. 課程特色頁面（首頁）專屬動態背景 (依 GlowLabView 設定的動畫即時渲染，其他分頁不顯示) -->
     <GlobalDynamicBackground />
 
