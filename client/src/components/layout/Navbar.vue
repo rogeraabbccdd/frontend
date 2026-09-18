@@ -285,7 +285,7 @@
 					:key="item.path"
 					:to="item.path"
 					@click="isOpen = false"
-					class="flex items-center justify-between px-5 py-4 rounded-2xl text-lg font-extrabold transition-all"
+					class="flex items-center justify-center gap-2.5 px-5 py-4 rounded-2xl text-lg font-extrabold transition-all"
 					:class="[
 						$route.path === item.path
 							? 'text-cyan-300 bg-cyan-500/20 border border-cyan-400/40 shadow-sm shadow-cyan-500/20'
