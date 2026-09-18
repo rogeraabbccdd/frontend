@@ -35,7 +35,7 @@ export interface ScrollStaggerOptions {
 
 /**
  * 全站統一的滾動交錯進場調度函式
- * @param targets 目標選擇器或元素集合 (例如: '.highlight-card', '.tech-card')
+ * @param targets 目標選擇器或元素集合 (例如: '.highlight-card', '.track-card')
  * @param trigger 觸發容器選擇器或元素 (例如: '#highlights-cards-grid')
  * @param options 選填覆寫參數
  * @returns gsap.Context 實例，供 onUnmounted 中呼叫 ctx.revert()
