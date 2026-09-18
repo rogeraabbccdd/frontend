@@ -3,7 +3,7 @@
     <!-- 標準化頂部 Header -->
     <PageHeader
       title="常見問題 FAQ"
-      subtitle="關於零基礎參訓、每月職訓生活津貼申請、受訓資格與培訓時段等常見問題，為您完整解答。"
+      subtitle="零基礎、費用、津貼、上課時間，報名前最常被問到的都在這裡。"
       theme="cyan"
     />
 
@@ -14,8 +14,8 @@
     <section class="py-20 sm:py-24 bg-slate-900/30 border-t border-slate-800/60 text-center relative overflow-hidden">
       <div class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12 space-y-4">
         <div class="max-w-3xl mx-auto space-y-4">
-          <h3 class="text-2xl sm:text-3xl font-black text-white tracking-tight">還有其他問題想即時提問？</h3>
-          <p class="text-slate-300 text-base">歡迎加入我們的 Discord 官方線上社群，有熱心學長姐與同學即時線上交流！</p>
+          <h3 class="text-2xl sm:text-3xl font-black text-white tracking-tight">還有其他問題？</h3>
+          <p class="text-slate-300 text-base">授課老師、在訓學員與結訓學長姐都在 Discord 社群裡，可以直接發問。</p>
           <div class="pt-2">
             <router-link
               to="/community"
@@ -50,7 +50,7 @@ useSeoMeta(() => {
 
   return {
     title: '常見問題與解答 ｜ 待業者生活津貼與報名資格 FAQ',
-    description: '整理報名泰山職訓「前端網頁技術與AI應用」專班的常見問題：包含零基礎參訓可行性、每月職訓生活津貼申請成數、報名與甄試流程、一人一機培訓設施與就業輔導。最完整的官方解答！',
+    description: '整理報名泰山職訓「前端網頁技術與AI應用」專班的常見問題：包含零基礎參訓可行性、每月職訓生活津貼申請成數、報名與甄試流程、一人一機培訓設施與就業輔導。',
     canonicalPath: '/faq',
     robots: 'index, follow',
     jsonLd: [
