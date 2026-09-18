@@ -73,7 +73,7 @@
 
                   <div class="flex items-center justify-between pt-3 border-t border-slate-800/80">
                     <span class="text-sm text-slate-300 font-semibold">
-                      {{ project.batch_tag }}
+                      {{ project.batch_tag || '' }}
                     </span>
                     <span class="text-sm text-cyan-400 font-bold flex items-center gap-1">
                       <span>查看詳情</span>
@@ -271,7 +271,9 @@ const totalPages = computed(() => {
 const batchGroups = computed(() => {
   const grouped = new Map<string, StudentProject[]>()
   for (const project of store.projects) {
-    const tag = project.batch_tag || '未分期'
+    const tag = (project.batch_tag || '').trim()
+    // 後台未填期別者不建立分類頁籤，仍會出現在「全部」
+    if (!tag) continue
     if (!grouped.has(tag)) grouped.set(tag, [])
     grouped.get(tag)!.push(project)
   }
@@ -280,7 +282,10 @@ const batchGroups = computed(() => {
   )
 })
 
-const sortedProjects = computed(() => batchGroups.value.flatMap((group) => group.items))
+const sortedProjects = computed(() => [
+  ...batchGroups.value.flatMap((group) => group.items),
+  ...store.projects.filter((project) => !(project.batch_tag || '').trim()),
+])
 
 const batchTabs = computed<SegmentedNavItem[]>(() => [
   { key: 'all', label: '全部', badge: String(store.projects.length) },
