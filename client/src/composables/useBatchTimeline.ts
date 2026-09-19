@@ -233,7 +233,7 @@ export function useBatchTimeline(batchesInput: MaybeRefOrGetter<AdmissionBatch[]
       }
 
       return {
-        label: `已結訓 · 報名截止`,
+        label: `已結訓，報名截止`,
         class: 'bg-slate-900/90 text-slate-400 border border-slate-800 shadow-none'
       }
     }
@@ -243,31 +243,31 @@ export function useBatchTimeline(batchesInput: MaybeRefOrGetter<AdmissionBatch[]
       const isTodayGrad = isTodayGraduationDay(batch.training_end_date)
       return {
         label: isTodayGrad
-          ? '🏁 今日結訓日 · 920h 最後衝刺'
-          : (days <= 14 ? `🏁 倒數結訓 · 距結訓僅剩 ${days} 天` : `🟢 920h 實體培訓進行中`),
+          ? '今日結訓'
+          : (days <= 14 ? `距結訓剩 ${days} 天` : `培訓進行中`),
         class: 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 shadow-sm shadow-emerald-500/10'
       }
     }
     if (isBatchScreeningOrPreparing(batch)) {
       return {
-        label: `✨ 甄試結束 · 待開訓 (${batch.training_start_date} 開課)`,
+        label: `甄試結束，${batch.training_start_date} 開訓`,
         class: 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm shadow-cyan-500/10'
       }
     }
     if (isBatchEnrolling(batch)) {
       return {
-        label: `🔥 火熱報名中 · ${getCountdownText(batch.enroll_end_date)}`,
+        label: `報名中，${getCountdownText(batch.enroll_end_date)}`,
         class: 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm shadow-amber-500/10'
       }
     }
     if (isBatchUpcoming(batch)) {
       return {
-        label: `⏳ 招生籌備中 · 即將開放`,
+        label: `招生籌備中`,
         class: 'bg-slate-800/80 text-slate-400 border border-slate-700/60 shadow-none'
       }
     }
     return {
-      label: `📢 ${batch.dynamic_status || '招生資訊'}`,
+      label: `${batch.dynamic_status || '招生資訊'}`,
       class: 'bg-slate-800/80 text-slate-400 border border-slate-700/60 shadow-none'
     }
   }
@@ -376,12 +376,12 @@ export function useBatchTimeline(batchesInput: MaybeRefOrGetter<AdmissionBatch[]
           : `距結訓剩 ${prog.remainingDays} 天`
         return {
           icon: Timer,
-          text: `已受訓 ${prog.elapsedDays}/${prog.totalDays} 天 · ${remainNotice}`
+          text: `已受訓 ${prog.elapsedDays}/${prog.totalDays} 天，${remainNotice}`
         }
       }
       return {
         icon: BookOpen,
-        text: `培訓進行中 · 已完成 ${prog.elapsedDays}/${prog.totalDays} 天`
+        text: `培訓進行中，已完成 ${prog.elapsedDays}/${prog.totalDays} 天`
       }
     }
     if (isBatchScreeningOrPreparing(batch)) {
@@ -393,18 +393,18 @@ export function useBatchTimeline(batchesInput: MaybeRefOrGetter<AdmissionBatch[]
     if (isBatchEnrolling(batch)) {
       return {
         icon: PenLine,
-        text: `報名中 · 待業民眾 100% 全額補助`
+        text: `報名中，待業民眾全額補助`
       }
     }
     if (isBatchUpcoming(batch)) {
       return {
         icon: Clock,
-        text: `新一期別籌備中 · 開訓日期尚未公布`
+        text: `新一期別籌備中，開訓日期尚未公布`
       }
     }
     return {
       icon: Flag,
-      text: `本期已結訓 · 報名已截止`
+      text: `本期已結訓，報名已截止`
     }
   }
 

@@ -12,7 +12,7 @@
       class="group flex items-center justify-between p-2.5 sm:p-3.5 rounded-2xl bg-gradient-to-r from-cyan-950/80 via-blue-950/80 to-slate-900/80 border border-cyan-500/30 hover:border-cyan-500/60 shadow-lg shadow-cyan-950/30 backdrop-blur-md transition-all"
     >
       <div class="flex items-center space-x-3 overflow-hidden">
-        <span class="flex-shrink-0 px-2.5 py-1 text-xs sm:text-sm font-bold uppercase rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40">
+        <span class="flex-shrink-0 px-2.5 py-1 text-xs sm:text-sm font-bold rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40">
           最新快訊
         </span>
         <span class="text-sm md:text-base font-medium text-slate-200 truncate group-hover:text-cyan-300 transition-colors">
@@ -20,7 +20,7 @@
         </span>
       </div>
       <span class="hidden sm:inline-flex items-center text-xs font-semibold text-cyan-400 group-hover:translate-x-1 transition-transform">
-        查看詳情 →
+        查看詳情
       </span>
     </a>
     <router-link
@@ -29,7 +29,7 @@
       class="group flex items-center justify-between p-2.5 sm:p-3.5 rounded-2xl bg-gradient-to-r from-cyan-950/80 via-blue-950/80 to-slate-900/80 border border-cyan-500/30 hover:border-cyan-500/60 shadow-lg shadow-cyan-950/30 backdrop-blur-md transition-all"
     >
       <div class="flex items-center space-x-3 overflow-hidden">
-        <span class="flex-shrink-0 px-2.5 py-1 text-xs sm:text-sm font-bold uppercase rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40">
+        <span class="flex-shrink-0 px-2.5 py-1 text-xs sm:text-sm font-bold rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40">
           最新快訊
         </span>
         <span class="text-sm md:text-base font-medium text-slate-200 truncate group-hover:text-cyan-300 transition-colors">
@@ -37,7 +37,7 @@
         </span>
       </div>
       <span class="hidden sm:inline-flex items-center text-xs font-semibold text-cyan-400 group-hover:translate-x-1 transition-transform">
-        查看詳情 →
+        查看詳情
       </span>
     </router-link>
   </div>
@@ -66,7 +66,7 @@ const hasActiveAdmission = computed(() => {
 
 const dynamicAnnouncementText = computed(() => {
   const customText = store.settings?.announcement_text?.trim()
-  const defaultAnnouncement = '🔥 115 年度第 1 期熱烈招生中！待業民眾享全額免費受訓與生活津貼補助！'
+  const defaultAnnouncement = '115 年度第 1 期招生中，待業民眾全額免費，可申請生活津貼。'
   // 若管理員在後台明確自訂快訊，100% 優先尊重管理員設定
   if (customText && customText !== defaultAnnouncement) {
     return customText
@@ -77,9 +77,9 @@ const dynamicAnnouncementText = computed(() => {
       return match ? match[0] : b.batch_name
     })
     const batchSummary = batchLabels.join(' & ')
-    return `🔥 ${batchSummary}熱烈招生中！待業民眾享全額免費受訓與生活津貼補助！`
+    return `${batchSummary}招生中，待業民眾全額免費，可申請生活津貼。`
   }
-  return customText || '🔥 熱烈招生中！待業民眾享全額免費受訓與生活津貼補助！'
+  return customText || '招生中，待業民眾全額免費，可申請生活津貼。'
 })
 
 const showAnnouncementBar = computed(() => {

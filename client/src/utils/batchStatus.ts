@@ -135,7 +135,7 @@ export function isBatchClosed(batch: AdmissionBatch): boolean {
  * 格式化報名倒數文字
  */
 export function getCountdownText(endDateStr?: string): string {
-  if (!endDateStr) return '熱烈招生中'
+  if (!endDateStr) return '報名中'
   try {
     const end = new Date(endDateStr.replace(/-/g, '/')).getTime() + 24 * 60 * 60 * 1000 - 1000
     const diff = end - Date.now()
@@ -143,11 +143,11 @@ export function getCountdownText(endDateStr?: string): string {
     const days = Math.floor(diff / (1000 * 60 * 60 * 24))
     if (days === 0) {
       const hours = Math.floor(diff / (1000 * 60 * 60))
-      return `⏳ 最後 ${hours} 小時！`
+      return `剩 ${hours} 小時截止`
     }
-    return `⏳ 倒數 ${days} 天截止`
+    return `剩 ${days} 天截止`
   } catch {
-    return '熱烈招生中'
+    return '報名中'
   }
 }
 
@@ -209,7 +209,7 @@ export function getBatchEnrollmentNotice(batches: AdmissionBatch[]): EnrollmentN
     return {
       isOpen: false,
       targetBatch: target,
-      badgeText: '⏳ 籌備中',
+      badgeText: '籌備中',
       headline: `下一期（${shortName}）即將開放報名`,
       subline: `預計報名起始日：${target.enroll_start_date || '即將公布'}，敬請期待。`,
       theme: 'amber'
