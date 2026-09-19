@@ -1,6 +1,8 @@
 name: Deploy Vue 3 Frontend to GitHub Pages
 
 on:
+  # 手動觸發：Actions 頁面會出現 Run workflow 按鈕，換 secret 或想重新部署時不必製造假 commit
+  workflow_dispatch:
   push:
     branches:
       - main
