@@ -18,8 +18,8 @@
         <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-3.5 lg:h-3.5 rounded-full bg-amber-500/80 flex-shrink-0"></div>
         <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-3.5 lg:h-3.5 rounded-full bg-emerald-500/80 flex-shrink-0"></div>
         <span class="ml-1 sm:ml-2 text-xs lg:text-sm font-mono text-slate-400 font-semibold flex items-center space-x-1.5 truncate">
-          <span class="text-cyan-400 flex-shrink-0">🤖</span>
-          <span class="truncate max-w-[120px] xs:max-w-[160px] sm:max-w-none">AI 學習助教 — 泰山職訓問答</span>
+          <Bot class="w-3.5 h-3.5 text-cyan-400 shrink-0" :stroke-width="2" />
+          <span class="truncate max-w-[120px] xs:max-w-[160px] sm:max-w-none">AI 學習助教：泰山職訓問答</span>
         </span>
       </div>
 
@@ -65,7 +65,8 @@
                 ? 'bg-gradient-to-tr from-slate-600 to-slate-700 text-slate-200'
                 : 'bg-gradient-to-tr from-cyan-500 to-blue-600 text-white shadow-cyan-500/30'"
             >
-              {{ msg.role === 'user' ? '你' : '🤖' }}
+              <template v-if="msg.role === 'user'">你</template>
+              <Bot v-else class="w-4 h-4" :stroke-width="1.75" />
             </div>
 
             <!-- 訊息泡泡 -->
@@ -103,7 +104,7 @@
         <!-- 思考中脈衝指示器 (AI 正在運算回應時推進畫面) -->
         <div v-if="showThinking" class="flex items-start gap-2.5">
           <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 text-white flex items-center justify-center text-xs sm:text-sm flex-shrink-0 shadow-md shadow-cyan-500/30 select-none mt-0.5">
-            🤖
+            <Bot class="w-4 h-4" :stroke-width="1.75" />
           </div>
           <div class="px-3.5 py-2.5 rounded-2xl rounded-tl-sm bg-gradient-to-br from-slate-900 to-cyan-950/40 border border-cyan-500/30">
             <div class="flex items-center space-x-1.5 py-0.5">
@@ -124,7 +125,7 @@
     <div class="h-[56px] sm:h-[60px] lg:h-[64px] px-3 sm:px-4 lg:px-5 bg-gradient-to-r from-slate-950 via-slate-900 to-cyan-950/40 border-t border-cyan-500/25 flex items-center space-x-2.5 sm:space-x-3 flex-shrink-0 z-20">
       <!-- 模擬輸入框（動態顯示下一題提示） -->
       <div class="flex-1 h-9 sm:h-10 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-cyan-500/40 px-3 flex items-center overflow-hidden transition-colors">
-        <span class="text-cyan-400 font-mono text-xs mr-1.5 font-bold select-none">💬</span>
+        <MessageCircle class="w-3.5 h-3.5 text-cyan-400 shrink-0 mr-1.5" :stroke-width="2" />
         <span class="text-xs sm:text-sm text-slate-300 truncate font-sans">{{ currentQuestionPreview }}</span>
         <span class="inline-block w-1.5 h-3.5 sm:h-4 bg-cyan-400 animate-pulse ml-1 flex-shrink-0"></span>
       </div>
@@ -137,7 +138,6 @@
         title="立即跳至下一個民眾關心議題"
       >
         <span>下一題</span>
-        <span class="text-sm leading-none">→</span>
       </button>
     </div>
   </div>
@@ -145,6 +145,7 @@
 
 <script setup lang="ts">
 import { ref, nextTick, onMounted, onUnmounted } from 'vue'
+import { Bot, MessageCircle } from 'lucide-vue-next'
 
 // 對話訊息模型
 interface ChatMessage {

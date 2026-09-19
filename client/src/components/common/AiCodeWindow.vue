@@ -18,7 +18,7 @@
         <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-3.5 lg:h-3.5 rounded-full bg-amber-500/80 flex-shrink-0"></div>
         <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-3.5 lg:h-3.5 rounded-full bg-emerald-500/80 flex-shrink-0"></div>
         <span class="ml-1 sm:ml-2 text-xs lg:text-sm font-mono text-slate-400 font-semibold flex items-center space-x-1 truncate">
-          <span class="text-cyan-400 flex-shrink-0">⚡</span>
+          <FileCode2 class="w-3.5 h-3.5 text-cyan-400 shrink-0" :stroke-width="2" />
           <span class="truncate max-w-[110px] xs:max-w-[160px] sm:max-w-none">AIChatWidget.vue</span>
         </span>
       </div>
@@ -37,7 +37,7 @@
 
     <!-- 2. AI Prompt 提示詞終端機指令列 (固定高度 38px sm:40px lg:44px) -->
     <div class="h-[38px] sm:h-[40px] lg:h-[44px] px-3 sm:px-4 lg:px-5 bg-slate-950/50 border-b border-slate-800/80 flex items-center space-x-2 text-xs lg:text-sm font-mono flex-shrink-0 overflow-hidden">
-      <span class="text-purple-400 font-bold flex-shrink-0">✨ Prompt:</span>
+      <span class="text-purple-400 font-bold flex-shrink-0">Prompt:</span>
       <span class="text-slate-200 truncate flex-1">{{ currentScenario.prompt }}</span>
       <span class="inline-block w-1.5 sm:w-2 h-3.5 sm:h-4 bg-cyan-400 animate-pulse flex-shrink-0"></span>
     </div>
@@ -91,7 +91,7 @@
           <span class="truncate">Tailwind</span>
         </div>
         <div class="text-cyan-400 font-bold flex-shrink-0">
-          ⚡ 920h 全端即戰力
+          920 小時實作課程
         </div>
       </div>
     </div>
@@ -99,8 +99,8 @@
     <!-- 4. 即時互動生成預覽小卡 (固定高度 76px sm:78px lg:83px xl:88px，左右內距 px-3 sm:px-4 lg:px-5) -->
     <div class="h-[76px] sm:h-[78px] lg:h-[83px] xl:h-[88px] px-3 sm:px-4 lg:px-5 bg-gradient-to-r from-slate-950 via-slate-900 to-cyan-950/40 border-t border-cyan-500/30 flex items-center justify-between flex-shrink-0 overflow-hidden">
       <div class="flex items-center space-x-2.5 sm:space-x-3 lg:space-x-3.5 truncate flex-1 mr-2 sm:mr-3">
-        <div class="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white text-sm sm:text-base lg:text-lg shadow-md shadow-cyan-500/30 flex-shrink-0">
-          🤖
+        <div class="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-md shadow-cyan-500/30 flex-shrink-0">
+          <Bot class="w-4 h-4 sm:w-5 sm:h-5" :stroke-width="1.75" />
         </div>
         <div class="truncate">
           <div class="text-xs lg:text-sm font-bold text-white flex items-center space-x-1.5">
@@ -128,23 +128,24 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { Bot, FileCode2 } from 'lucide-vue-next'
 
-// 前端 ＋ AI 實戰場景展示清單
+// 前端與 AI 實戰場景展示清單
 const scenarios = [
   {
-    prompt: '用 Vue 3 建立 AI 智能對話與即時串流前端組件...',
-    typingText: '你好！我是泰山職訓 AI 前端助手，準備好探索 920h 完整實戰了嗎？',
-    previewMessage: '⚡ 已完成 Vue 3 + AI 流式串接前端組件生成！'
+    prompt: '用 Vue 3 建立 AI 智能對話與即時串流前端元件...',
+    typingText: '已依需求產生元件骨架，資料串接的部分留給你自己接。',
+    previewMessage: '已產生 Vue 3 元件與 API 串接'
   },
   {
-    prompt: '實作 Pinia 狀態管理 ＋ Tailwind 深色科技風儀表板...',
-    typingText: '成功載入全域狀態管理與響應式深色科技介面！',
-    previewMessage: '🎨 已渲染 100% 響應式現代前端 Dashboard！'
+    prompt: '實作 Pinia 狀態管理與 Tailwind 深色版面...',
+    typingText: '狀態管理已接上，版面在手機與桌機都能用。',
+    previewMessage: '版面已套用，支援手機與桌機'
   },
   {
     prompt: '串接 Claude & OpenAI API 實作即時代碼分析與自動生成...',
-    typingText: '串接 LLM API 成功，即時解析程式碼並提供最佳化建議！',
-    previewMessage: '🚀 前端工程師必備之 AI 全端輔助開發流程！'
+    typingText: '已標出三處可以再簡化的寫法，要不要逐一看？',
+    previewMessage: '已標出可以再簡化的寫法'
   }
 ]
 
