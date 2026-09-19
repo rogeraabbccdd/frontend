@@ -6,7 +6,7 @@
 			<div class="section-head text-center max-w-5xl mx-auto">
 				<h2 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-tight text-balance">
 					<span class="block lg:inline">起點不同<span class="hidden lg:inline">，</span></span><span
-						class="block mt-1 lg:mt-0 lg:inline text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400"
+						class="block mt-1 lg:mt-0 lg:inline"
 						>不代表從零開始</span
 					>
 				</h2>
@@ -53,14 +53,14 @@ const tracks: SpotlightItem[] = [
 	{
 		key: 'career',
 		icon: Route,
-		iconActiveClass: 'text-blue-300',
+		iconActiveClass: 'text-emerald-300',
 		navLabel: '轉換跑道',
 		eyebrow: '想建立新專業',
 		title: '探索職涯可能性',
 		body: '半年換一項帶得走的技能，工作幾年後還在用。',
-		eyebrowClass: 'text-blue-400',
-		activeTile: 'bg-blue-500/15 border-blue-400/60 shadow-blue-950/50',
-		panelBorder: 'border-blue-500/50',
+		eyebrowClass: 'text-emerald-400',
+		activeTile: 'bg-emerald-500/15 border-emerald-400/60 shadow-emerald-950/50',
+		panelBorder: 'border-emerald-500/50',
 	},
 	{
 		key: 'designer',
@@ -77,14 +77,14 @@ const tracks: SpotlightItem[] = [
 	{
 		key: 'self-taught',
 		icon: Laptop,
-		iconActiveClass: 'text-emerald-300',
+		iconActiveClass: 'text-blue-300',
 		navLabel: '自學卡關',
 		eyebrow: '曾接觸過程式',
 		title: '自學瓶頸或資訊相關',
 		body: '920 小時系統化訓練，把破碎知識整合成專案能力。',
-		eyebrowClass: 'text-emerald-400',
-		activeTile: 'bg-emerald-500/15 border-emerald-400/60 shadow-emerald-950/50',
-		panelBorder: 'border-emerald-500/50',
+		eyebrowClass: 'text-blue-400',
+		activeTile: 'bg-blue-500/15 border-blue-400/60 shadow-blue-950/50',
+		panelBorder: 'border-blue-500/50',
 	},
 ]
 

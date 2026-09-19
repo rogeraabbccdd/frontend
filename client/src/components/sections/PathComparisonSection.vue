@@ -6,7 +6,7 @@
 			<div class="section-head text-center max-w-4xl mx-auto">
 				<h2 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-tight text-balance">
 					<span class="block lg:inline">不只一條路<span class="hidden lg:inline">，</span></span><span
-						class="block mt-1 lg:mt-0 lg:inline text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400"
+						class="block mt-1 lg:mt-0 lg:inline"
 						>該怎麼開始？</span
 					>
 				</h2>
@@ -33,7 +33,7 @@
 					:aria-labelledby="`path-comparison-tab-${active}`"
 					class="mt-5 sm:mt-6"
 				>
-					<Transition name="path-fade" mode="out-in">
+					<Transition name="panel-swap" mode="out-in">
 						<div
 							:key="current.key"
 							class="card-subsurface-glow relative rounded-3xl p-5 sm:p-7 bg-slate-900/80 backdrop-blur-xl border shadow-2xl shadow-slate-950/60 overflow-hidden"
@@ -158,26 +158,3 @@ const navItems = computed<SegmentedNavItem[]>(() =>
 )
 </script>
 
-<style scoped>
-.path-fade-enter-active,
-.path-fade-leave-active {
-	transition: opacity 0.26s ease-out, transform 0.26s ease-out;
-}
-
-.path-fade-enter-from {
-	opacity: 0;
-	transform: translateY(10px);
-}
-
-.path-fade-leave-to {
-	opacity: 0;
-	transform: translateY(-6px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.path-fade-enter-active,
-	.path-fade-leave-active {
-		transition: none;
-	}
-}
-</style>

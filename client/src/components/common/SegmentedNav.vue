@@ -23,16 +23,24 @@
 			class="group relative flex items-center gap-2 sm:gap-2.5 rounded-2xl border px-3 py-2 sm:px-4 sm:py-3 transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
 			:class="[
 				variant === 'step' ? 'sm:flex-1 sm:justify-center' : '',
-				index === modelValue ? accentClasses.active : accentClasses.idle,
-				accentClasses.ring,
+				index === modelValue ? accentFor(index).active : accentFor(index).idle,
+				accentFor(index).ring,
 			]"
 			@click="select(index)"
 		>
+			<!-- 步驟之間的連接線：畫在左側間隙上，讓各步驟讀起來是同一條路徑而非獨立按鈕 -->
+			<span
+				v-if="variant === 'step' && index > 0"
+				aria-hidden="true"
+				class="pointer-events-none absolute right-full top-1/2 hidden h-[3px] w-2 sm:w-3 -translate-y-1/2 rounded-full sm:block transition-colors duration-300"
+				:class="index <= modelValue ? accentClasses.connector : 'bg-slate-700'"
+			></span>
+
 			<!-- 步驟序號或標籤圖示 -->
 			<span
 				v-if="variant === 'step'"
 				class="flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full text-base sm:text-lg font-black leading-none transition-colors duration-300"
-				:class="index === modelValue ? accentClasses.markerActive : accentClasses.markerIdle"
+				:class="index === modelValue ? accentFor(index).markerActive : accentFor(index).markerIdle"
 			>
 				{{ index + 1 }}
 			</span>
@@ -67,6 +75,8 @@ export interface SegmentedNavItem {
 	icon?: string | Component
 	/** tab 樣式專用尾端數量徽章 */
 	badge?: string
+	/** 該項目專屬主題色；未指定則沿用元件層級的 accent */
+	accent?: AccentName
 }
 
 const props = withDefaults(
@@ -96,16 +106,17 @@ const emit = defineEmits<{
 	'update:modelValue': [value: number]
 }>()
 
-type AccentName = 'cyan' | 'blue' | 'emerald' | 'purple' | 'amber'
+export type AccentName = 'cyan' | 'blue' | 'emerald' | 'purple' | 'indigo' | 'amber'
 
 // 完整靜態類名映射：Tailwind 僅掃描原始碼字面量，禁止動態拼接色票字串
-const ACCENTS: Record<AccentName, { active: string; idle: string; ring: string; markerActive: string; markerIdle: string }> = {
+const ACCENTS: Record<AccentName, { active: string; idle: string; ring: string; markerActive: string; markerIdle: string; connector: string }> = {
 	cyan: {
 		active: 'bg-cyan-500/15 border-cyan-400/60 text-white shadow-lg shadow-cyan-950/50',
 		idle: 'bg-slate-900/70 border-slate-800/90 text-slate-300 hover:border-cyan-500/40 hover:text-white',
 		ring: 'focus-visible:ring-cyan-400',
 		markerActive: 'bg-cyan-400 text-slate-950',
 		markerIdle: 'bg-slate-800 text-slate-300 group-hover:bg-slate-700',
+		connector: 'bg-cyan-400',
 	},
 	blue: {
 		active: 'bg-blue-500/15 border-blue-400/60 text-white shadow-lg shadow-blue-950/50',
@@ -113,6 +124,7 @@ const ACCENTS: Record<AccentName, { active: string; idle: string; ring: string; 
 		ring: 'focus-visible:ring-blue-400',
 		markerActive: 'bg-blue-400 text-slate-950',
 		markerIdle: 'bg-slate-800 text-slate-300 group-hover:bg-slate-700',
+		connector: 'bg-blue-400',
 	},
 	emerald: {
 		active: 'bg-emerald-500/15 border-emerald-400/60 text-white shadow-lg shadow-emerald-950/50',
@@ -120,6 +132,7 @@ const ACCENTS: Record<AccentName, { active: string; idle: string; ring: string; 
 		ring: 'focus-visible:ring-emerald-400',
 		markerActive: 'bg-emerald-400 text-slate-950',
 		markerIdle: 'bg-slate-800 text-slate-300 group-hover:bg-slate-700',
+		connector: 'bg-emerald-400',
 	},
 	purple: {
 		active: 'bg-purple-500/15 border-purple-400/60 text-white shadow-lg shadow-purple-950/50',
@@ -127,6 +140,15 @@ const ACCENTS: Record<AccentName, { active: string; idle: string; ring: string; 
 		ring: 'focus-visible:ring-purple-400',
 		markerActive: 'bg-purple-400 text-slate-950',
 		markerIdle: 'bg-slate-800 text-slate-300 group-hover:bg-slate-700',
+		connector: 'bg-purple-400',
+	},
+	indigo: {
+		active: 'bg-indigo-500/15 border-indigo-400/60 text-white shadow-lg shadow-indigo-950/50',
+		idle: 'bg-slate-900/70 border-slate-800/90 text-slate-300 hover:border-indigo-500/40 hover:text-white',
+		ring: 'focus-visible:ring-indigo-400',
+		markerActive: 'bg-indigo-400 text-slate-950',
+		markerIdle: 'bg-slate-800 text-slate-300 group-hover:bg-slate-700',
+		connector: 'bg-indigo-400',
 	},
 	amber: {
 		active: 'bg-amber-500/15 border-amber-400/60 text-white shadow-lg shadow-amber-950/50',
@@ -134,10 +156,16 @@ const ACCENTS: Record<AccentName, { active: string; idle: string; ring: string; 
 		ring: 'focus-visible:ring-amber-400',
 		markerActive: 'bg-amber-400 text-slate-950',
 		markerIdle: 'bg-slate-800 text-slate-300 group-hover:bg-slate-700',
+		connector: 'bg-amber-400',
 	},
 }
 
 const accentClasses = computed(() => ACCENTS[props.accent])
+
+// 作用中項目採用自己的主題色，與下方面板一致；連接線代表「路徑」而非單一步驟，維持元件主題色
+function accentFor(index: number) {
+	return ACCENTS[props.items[index]?.accent ?? props.accent]
+}
 
 const tabRefs = ref<HTMLButtonElement[]>([])
 

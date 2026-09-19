@@ -6,7 +6,7 @@
 			<div class="section-head text-center max-w-4xl mx-auto">
 				<h2 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-tight">
 					<span class="block lg:inline">從第一行程式碼<span class="hidden lg:inline">，</span></span><span
-						class="block mt-1 lg:mt-0 lg:inline text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400"
+						class="block mt-1 lg:mt-0 lg:inline"
 						>到自己的作品</span
 					>
 				</h2>
@@ -24,14 +24,6 @@
 					ariaLabel="四階段學習歷程"
 				/>
 
-				<!-- 進度軌 (以視覺長度回饋目前走到第幾階段) -->
-				<div class="hidden sm:block mt-4 h-1 w-full rounded-full bg-slate-800/80 overflow-hidden" aria-hidden="true">
-					<div
-						class="h-full rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400 transition-[width] duration-500 ease-out"
-						:style="{ width: `${((active + 1) / stages.length) * 100}%` }"
-					></div>
-				</div>
-
 				<!-- 目前階段內容面板 -->
 				<div
 					id="learning-path-panel"
@@ -44,16 +36,16 @@
 						v-model="active"
 						:total="stages.length"
 						unit-label="階段"
-						active-dot="bg-cyan-400"
+						:active-dot="current.dotClass"
 					/>
 
-					<Transition name="stage-fade" mode="out-in">
+					<Transition name="panel-swap" mode="out-in">
 							<!-- 固定最小高度，避免切換階段時整區高度跳動 -->
 							<div :key="current.key" class="relative z-10 min-h-[15.5rem] sm:min-h-[13rem] lg:min-h-0">
 								<!-- 標頭：圖示置左，右側兩行放 Stage 與階段名稱 -->
 								<div class="flex items-center gap-4 sm:gap-6 mb-4">
 									<div
-										class="w-14 h-14 sm:w-20 sm:h-20 shrink-0 rounded-2xl sm:rounded-3xl border flex items-center justify-center shadow-inner"
+										class="w-14 h-14 sm:w-20 sm:h-20 shrink-0 rounded-2xl sm:rounded-3xl border flex items-center justify-center shadow-inner transition-colors duration-300"
 										:class="current.iconClass"
 										aria-hidden="true"
 									>
@@ -98,85 +90,76 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { LayoutTemplate, Boxes, Database, Bot } from 'lucide-vue-next'
-import SegmentedNav, { type SegmentedNavItem } from '@/components/common/SegmentedNav.vue'
+import SegmentedNav, { type SegmentedNavItem, type AccentName } from '@/components/common/SegmentedNav.vue'
 import StepperArrows from '@/components/common/StepperArrows.vue'
 
 // 4 階段能力蛻變路徑，改以 stepper 分段呈現，一次只聚焦單一階段避免長文同屏堆疊
 const stages = [
 	{
 		key: 'stage-01',
+		iconClass: 'bg-cyan-500/10 border-cyan-500/30',
+		labelClass: 'text-cyan-300',
+		panelBorder: 'border-cyan-500/30',
+		topLine: 'via-cyan-400/50',
+		dotClass: 'bg-cyan-400',
 		navLabel: '看懂網頁',
 		stageTag: 'STAGE 01',
 		title: '看懂網頁怎麼運作',
 		description: '從 HTML/CSS/JS 開始，理解畫面與互動原理，從看不懂到知道每行程式碼在做什麼。',
 		icon: LayoutTemplate,
 		skills: ['HTML', 'CSS', 'JavaScript'],
-		iconClass: 'bg-cyan-500/10 border-cyan-500/30',
-		labelClass: 'text-cyan-300',
 	},
 	{
 		key: 'stage-02',
+		iconClass: 'bg-emerald-500/10 border-emerald-500/30',
+		labelClass: 'text-emerald-300',
+		panelBorder: 'border-emerald-500/30',
+		topLine: 'via-emerald-400/50',
+		dotClass: 'bg-emerald-400',
 		navLabel: '組織系統',
 		stageTag: 'STAGE 02',
 		title: '學會組織前端系統',
 		description: '進入 Vue 3 元件化與狀態管理，學會把功能組織成好維護的系統。',
 		icon: Boxes,
-		skills: ['Vue 3', '組件架構', 'Pinia'],
-		iconClass: 'bg-blue-500/10 border-blue-500/30',
-		labelClass: 'text-blue-300',
+		skills: ['Vue 3', '元件架構', 'Pinia'],
 	},
 	{
 		key: 'stage-03',
+		iconClass: 'bg-purple-500/10 border-purple-500/30',
+		labelClass: 'text-purple-300',
+		panelBorder: 'border-purple-500/30',
+		topLine: 'via-purple-400/50',
+		dotClass: 'bg-purple-400',
 		navLabel: '串接資料',
 		stageTag: 'STAGE 03',
 		title: '串接真實資料流',
 		description: '串接 REST API 與資料庫，貫通前後端資料流，具備處理真實業務邏輯的能力。',
 		icon: Database,
 		skills: ['REST API', 'Node.js', '資料庫'],
-		iconClass: 'bg-purple-500/10 border-purple-500/30',
-		labelClass: 'text-purple-300',
 	},
 	{
 		key: 'stage-04',
+		iconClass: 'bg-blue-500/10 border-blue-500/30',
+		labelClass: 'text-blue-300',
+		panelBorder: 'border-blue-500/30',
+		topLine: 'via-blue-400/50',
+		dotClass: 'bg-blue-400',
 		navLabel: '協作交付',
 		stageTag: 'STAGE 04',
 		title: '與 AI 協作交付',
 		description: '具備對 AI 提問、審核與除錯的判斷力，結合 Git 流程將 AI 轉化為真實生產力。',
 		icon: Bot,
 		skills: ['AI 協同', '除錯驗證', 'Git'],
-		iconClass: 'bg-emerald-500/10 border-emerald-500/30',
-		labelClass: 'text-emerald-300',
 	},
 ]
+
+// 各步驟的主題色：上方導覽列的作用中膠囊與下方面板共用同一個值
+const STEP_ACCENTS: AccentName[] = ['cyan', 'emerald', 'purple', 'blue']
 
 const active = ref(0)
 const current = computed(() => stages[active.value])
 const navItems = computed<SegmentedNavItem[]>(() =>
-	stages.map((stage) => ({ key: stage.key, label: stage.navLabel })),
+	stages.map((stage, index) => ({ key: stage.key, label: stage.navLabel, accent: STEP_ACCENTS[index] })),
 )
 </script>
 
-<style scoped>
-/* 階段切換淡入位移，維持全站 power1.out 絲滑手感 */
-.stage-fade-enter-active,
-.stage-fade-leave-active {
-	transition: opacity 0.28s ease-out, transform 0.28s ease-out;
-}
-
-.stage-fade-enter-from {
-	opacity: 0;
-	transform: translateY(10px);
-}
-
-.stage-fade-leave-to {
-	opacity: 0;
-	transform: translateY(-6px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.stage-fade-enter-active,
-	.stage-fade-leave-active {
-		transition: none;
-	}
-}
-</style>

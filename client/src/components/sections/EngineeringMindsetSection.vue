@@ -6,7 +6,7 @@
 			<div class="section-head text-center max-w-5xl mx-auto">
 				<h2 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-tight text-balance">
 					<span class="block lg:inline">AI 時代<span class="hidden lg:inline">，</span></span><span
-						class="block mt-1 lg:mt-0 lg:inline text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-300"
+						class="block mt-1 lg:mt-0 lg:inline"
 						>我們培養能完成產品的人</span
 					>
 				</h2>
@@ -25,45 +25,40 @@
 						ariaLabel="五階段工程心智"
 					/>
 
-					<!-- 進度軌 (以視覺長度回饋目前走到第幾階段) -->
-					<div class="hidden sm:block mt-4 h-1 w-full rounded-full bg-slate-800/80 overflow-hidden" aria-hidden="true">
-						<div
-							class="h-full rounded-full bg-gradient-to-r from-cyan-400 to-indigo-400 transition-[width] duration-500 ease-out"
-							:style="{ width: `${((active + 1) / stages.length) * 100}%` }"
-						></div>
-					</div>
-
 					<div
 						id="engineering-mindset-panel"
 						role="tabpanel"
 						:aria-labelledby="`engineering-mindset-tab-${active}`"
-						class="relative rounded-3xl px-12 pb-9 pt-5 sm:mt-5 sm:px-7 sm:pb-7 sm:pt-7 bg-gradient-to-br from-slate-900/95 via-slate-900/85 to-slate-950/95 border border-cyan-500/30 backdrop-blur-xl shadow-2xl shadow-slate-950/70 overflow-hidden"
+						class="relative rounded-3xl px-12 pb-9 pt-5 sm:mt-5 sm:px-7 sm:pb-7 sm:pt-7 bg-gradient-to-br from-slate-900/95 via-slate-900/85 to-slate-950/95 border backdrop-blur-xl shadow-2xl shadow-slate-950/70 overflow-hidden transition-colors duration-300"
+						:class="current.panelBorder"
 					>
 						<!-- 頂部高光流線 -->
 						<div
-							class="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent pointer-events-none"
+							class="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent to-transparent pointer-events-none transition-colors duration-300"
+							:class="current.topLine"
 						></div>
 
 						<StepperArrows
 						v-model="active"
 						:total="stages.length"
 						unit-label="階段"
-						active-dot="bg-cyan-400"
+						:active-dot="current.dotClass"
 					/>
 
-					<Transition name="stage-fade" mode="out-in">
+					<Transition name="panel-swap" mode="out-in">
 							<!-- 固定最小高度，避免切換階段時整區高度跳動 -->
 							<div :key="current.key" class="relative z-10 min-h-[9.5rem] sm:min-h-[8rem] lg:min-h-0">
 								<!-- 標頭：圖示置左，右側兩行放 STEP 與階段名稱 -->
 								<div class="flex items-center gap-4 sm:gap-6 mb-4">
 									<div
-										class="w-14 h-14 sm:w-20 sm:h-20 shrink-0 rounded-2xl sm:rounded-3xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center shadow-inner"
+										class="w-14 h-14 sm:w-20 sm:h-20 shrink-0 rounded-2xl sm:rounded-3xl border flex items-center justify-center shadow-inner transition-colors duration-300"
+										:class="current.iconClass"
 										aria-hidden="true"
 									>
-										<component :is="current.icon" class="w-7 h-7 sm:w-10 sm:h-10 text-cyan-300" :stroke-width="1.75" />
+										<component :is="current.icon" class="w-7 h-7 sm:w-10 sm:h-10" :class="current.labelClass" :stroke-width="1.75" />
 									</div>
 									<div class="min-w-0 sm:flex sm:items-baseline sm:gap-3">
-										<div class="text-xl sm:text-2xl font-bold tracking-wider text-cyan-300 sm:shrink-0">STEP {{ active + 1 }}</div>
+										<div class="text-xl sm:text-2xl font-bold tracking-wider sm:shrink-0" :class="current.labelClass">STEP {{ active + 1 }}</div>
 										<h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight text-pretty">
 											{{ current.question }}
 										</h3>
@@ -108,13 +103,18 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { Target, Puzzle, Handshake, ScanSearch, Rocket, Lightbulb, Search, ShieldCheck } from 'lucide-vue-next'
-import SegmentedNav, { type SegmentedNavItem } from '@/components/common/SegmentedNav.vue'
+import SegmentedNav, { type SegmentedNavItem, type AccentName } from '@/components/common/SegmentedNav.vue'
 import StepperArrows from '@/components/common/StepperArrows.vue'
 
 // 5 階段工程心智，改以 stepper 分段呈現，一次只聚焦單一階段避免長文同屏堆疊
 const stages = [
 	{
 		key: 'understand',
+		iconClass: 'bg-cyan-500/10 border-cyan-500/30',
+		labelClass: 'text-cyan-300',
+		panelBorder: 'border-cyan-500/30',
+		topLine: 'via-cyan-400/50',
+		dotClass: 'bg-cyan-400',
 		name: '理解',
 		question: '需求到底是什麼？',
 		detail: '先搞清楚要解決什麼問題、使用者真正想要什麼，再動手。',
@@ -122,6 +122,11 @@ const stages = [
 	},
 	{
 		key: 'decompose',
+		iconClass: 'bg-emerald-500/10 border-emerald-500/30',
+		labelClass: 'text-emerald-300',
+		panelBorder: 'border-emerald-500/30',
+		topLine: 'via-emerald-400/50',
+		dotClass: 'bg-emerald-400',
 		name: '拆解',
 		question: '這個問題怎麼拆？',
 		detail: '把一個大需求切成可以各自完成的小步驟。',
@@ -129,6 +134,11 @@ const stages = [
 	},
 	{
 		key: 'collaborate',
+		iconClass: 'bg-purple-500/10 border-purple-500/30',
+		labelClass: 'text-purple-300',
+		panelBorder: 'border-purple-500/30',
+		topLine: 'via-purple-400/50',
+		dotClass: 'bg-purple-400',
 		name: '協作',
 		question: '如何讓 AI 幫我加速？',
 		detail: '用精準的描述請 AI 產出草稿與雛型，把時間留給判斷、設計與取捨。',
@@ -136,6 +146,11 @@ const stages = [
 	},
 	{
 		key: 'verify',
+		iconClass: 'bg-blue-500/10 border-blue-500/30',
+		labelClass: 'text-blue-300',
+		panelBorder: 'border-blue-500/30',
+		topLine: 'via-blue-400/50',
+		dotClass: 'bg-blue-400',
 		name: '驗證',
 		question: 'AI 做的是對的嗎？',
 		detail: '逐行審閱 AI 產出的程式碼，自行除錯與測試，確認它真的符合需求。',
@@ -143,6 +158,11 @@ const stages = [
 	},
 	{
 		key: 'integrate',
+		iconClass: 'bg-indigo-500/10 border-indigo-500/30',
+		labelClass: 'text-indigo-300',
+		panelBorder: 'border-indigo-500/30',
+		topLine: 'via-indigo-400/50',
+		dotClass: 'bg-indigo-400',
 		name: '整合',
 		question: '如何真正運作？',
 		detail: '串接前端、後端與資料庫並完成部署，交付一個能實際運行的完整產品。',
@@ -150,10 +170,13 @@ const stages = [
 	},
 ]
 
+// 各步驟的主題色：上方導覽列的作用中膠囊與下方面板共用同一個值
+const STEP_ACCENTS: AccentName[] = ['cyan', 'emerald', 'purple', 'blue', 'indigo']
+
 const active = ref(0)
 const current = computed(() => stages[active.value])
 const navItems = computed<SegmentedNavItem[]>(() =>
-	stages.map((stage) => ({ key: stage.key, label: stage.name })),
+	stages.map((stage, index) => ({ key: stage.key, label: stage.name, accent: STEP_ACCENTS[index] })),
 )
 
 // AI 實務協同場景（由原 AiWorkflowSection 合併而來，統一採用精簡文案）
@@ -182,27 +205,3 @@ const aiScenes = [
 ]
 </script>
 
-<style scoped>
-/* 階段切換淡入位移，維持全站 power1.out 絲滑手感 */
-.stage-fade-enter-active,
-.stage-fade-leave-active {
-	transition: opacity 0.28s ease-out, transform 0.28s ease-out;
-}
-
-.stage-fade-enter-from {
-	opacity: 0;
-	transform: translateY(10px);
-}
-
-.stage-fade-leave-to {
-	opacity: 0;
-	transform: translateY(-6px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.stage-fade-enter-active,
-	.stage-fade-leave-active {
-		transition: none;
-	}
-}
-</style>

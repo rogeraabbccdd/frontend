@@ -11,7 +11,7 @@
 					class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-tight text-balance"
 				>
 					<span class="block lg:inline">你面對的<span class="hidden lg:inline">，</span></span><span
-						class="block mt-1 lg:mt-0 lg:inline text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400"
+						class="block mt-1 lg:mt-0 lg:inline"
 						>不只是要不要學程式</span
 					>
 				</h2>
@@ -49,8 +49,8 @@ const doubts: AccordionItem[] = [
 		title: '現在才學寫程式，會不會馬上被 AI 取代？',
 		quote: '「新聞天天都在報 AI 能一秒寫出網頁，現在投入還有競爭力嗎……」',
 		body: 'AI 讓寫程式變容易，卻讓架構思維、獨立除錯與判斷力更加關鍵。課程教的是理解自己正在做什麼。',
-		iconClass: 'bg-blue-500/15 border-blue-500/40',
-		activeBorder: 'border-blue-500/50',
+		iconClass: 'bg-emerald-500/15 border-emerald-500/40',
+		activeBorder: 'border-emerald-500/50',
 	},
 	{
 		key: 'doubt-03',
