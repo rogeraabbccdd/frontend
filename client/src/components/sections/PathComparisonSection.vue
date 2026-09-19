@@ -11,7 +11,7 @@
 					>
 				</h2>
 				<p class="hidden sm:block text-slate-400 mt-4 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed text-pretty text-center">
-					三條路都有人走成，差別在<span class="text-slate-200 font-bold">你現在缺的是什麼</span>。
+					三條路都有人走成，差別在你現在缺的是什麼。
 				</p>
 			</div>
 
