@@ -57,7 +57,7 @@
     </PageHeader>
 
     <!-- 期別卡片 (支援一鍵複製代碼與倒數計時，由 PageHeader 統一引導) -->
-    <BatchesSection hide-header />
+    <BatchesSection />
   </div>
 </template>
 

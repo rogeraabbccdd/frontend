@@ -1,78 +1,13 @@
 <template>
   <section
     id="batches"
-    class="relative overflow-hidden w-full max-w-[100vw]"
-    :class="[
-      hideHeader
-        ? 'pt-8 pb-20 sm:pb-24 bg-transparent'
-        : 'py-24 bg-transparent'
-    ]"
+    class="relative overflow-hidden w-full max-w-[100vw] pt-8 pb-20 sm:pb-24 bg-transparent"
   >
     <!-- 頂部與底部環境發光微暈 (加入 pointer-events-none 與嚴格局限) -->
     <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12 relative z-10 w-full overflow-hidden">
-      <!-- 區塊標題 (僅在首頁等未隱藏標頭時渲染) -->
-      <div v-if="!hideHeader" class="text-center max-w-5xl mx-auto mb-14">
-        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-sm font-bold uppercase tracking-wider shadow-sm mb-3">
-          <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
-          <span>Admission Batches ｜ 招生期別</span>
-        </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
-          招生期別與報名
-        </h2>
-        <p class="text-slate-400 mt-4 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed text-center">
-          把握政府自辦 100% 全額補助參訓機會，點擊「立即線上報名」直通台灣就業通官方報名系統。
-        </p>
-
-        <!-- 即時報名狀態指示看板 (讓民眾一眼秒懂當前報名狀態) -->
-        <div class="mt-5 max-w-xl mx-auto w-full px-2 sm:px-0">
-          <div
-            class="relative rounded-2xl p-3.5 sm:p-4.5 border backdrop-blur-xl transition-all duration-300 overflow-hidden shadow-xl"
-            :class="notice.isOpen
-              ? 'bg-emerald-950/40 border-emerald-500/40 shadow-emerald-950/50'
-              : 'bg-slate-900/85 border-amber-500/30 shadow-slate-950/60'"
-          >
-            <!-- 頂部流光微線 -->
-            <div
-              class="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent"
-              :class="notice.isOpen ? 'via-emerald-400/50 to-transparent' : 'via-amber-400/40 to-transparent'"
-            ></div>
-
-            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 text-left">
-              <!-- 狀態標籤 Pill Badge -->
-              <div class="flex-shrink-0">
-                <span
-                  class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold font-mono tracking-wide"
-                  :class="notice.isOpen
-                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                    : 'bg-amber-500/15 text-amber-300 border border-amber-500/30'"
-                >
-                  <span
-                    class="w-2 h-2 rounded-full mr-1.5"
-                    :class="notice.isOpen ? 'bg-emerald-400 animate-ping' : 'bg-amber-400'"
-                  ></span>
-                  {{ notice.badgeText }}
-                </span>
-              </div>
-
-              <!-- 核心標題與引導說明 -->
-              <div class="flex-grow">
-                <div
-                  class="text-base sm:text-lg font-bold tracking-tight"
-                  :class="notice.isOpen ? 'text-white' : 'text-amber-200'"
-                >
-                  {{ notice.headline }}
-                </div>
-                <p class="mt-1 text-xs sm:text-sm text-slate-300 leading-relaxed text-justify">
-                  {{ notice.subline }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- 期別卡片網格清單 (平板單欄居中限寬，桌機雙欄大器舒展) -->
       <div id="batches-cards-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-10 max-w-2xl lg:max-w-[1360px] mx-auto w-full">
@@ -181,7 +116,7 @@
                       class="relative z-10 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-all duration-300"
                       :class="getStepNodeClass(batch, sIndex + 1)"
                     >
-                      <span v-if="getStepStatus(batch, sIndex + 1) === 'completed'">✓</span>
+                      <Check v-if="getStepStatus(batch, sIndex + 1) === 'completed'" class="w-4 h-4" :stroke-width="3" />
                       <span v-else>{{ sIndex + 1 }}</span>
 
                       <!-- 結訓慶典專屬：聲納波紋擴散光環 (Sonar Ripple Pulse) -->
@@ -282,7 +217,7 @@
                 ? 'bg-gradient-to-r from-amber-500 via-orange-500 to-rose-600 hover:from-amber-400 hover:to-rose-500 shadow-amber-500/40 hover:shadow-amber-500/60'
                 : 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-cyan-500/30 hover:shadow-cyan-500/50'"
             >
-              <span v-if="isBatchUrgentClosing(batch)">⚠️ 席次倒數 · 立即前往台灣就業通報名</span>
+              <span v-if="isBatchUrgentClosing(batch)">席次倒數，前往台灣就業通報名</span>
               <span v-else>立即至<span class="inline-block">台灣就業通</span>報名</span>
               <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -307,7 +242,7 @@
                 title="點擊為結訓學員送上祝賀星塵禮花"
                 class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 active:scale-95 transition-all shadow-md shadow-emerald-500/30 cursor-pointer select-none group/btn shrink-0"
               >
-                <span class="text-sm sm:text-base group-hover/btn:scale-125 transition-transform">🎉</span>
+                <PartyPopper class="w-4 h-4 sm:w-5 sm:h-5 group-hover/btn:scale-125 transition-transform" :stroke-width="1.75" />
                 <span>送上祝賀</span>
                 <span class="font-mono bg-emerald-950/90 px-2 py-0.5 rounded text-xs text-emerald-200 border border-emerald-400/40 font-semibold">{{ celebrationCount }}</span>
               </button>
@@ -354,7 +289,7 @@
               <svg class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
               </svg>
-              <span>⛔ 本期報名已截止受理</span>
+              <span>本期報名已截止</span>
             </div>
           </div>
         </div>
@@ -419,9 +354,8 @@ import { ref, computed, toRef, onMounted, onUnmounted, nextTick, watch } from 'v
 import confetti from 'canvas-confetti'
 import type { AdmissionBatch } from '@/types'
 import { gsap } from '@/utils/motion'
-import { useScrollStagger } from '@/composables/useScrollStagger'
 import { useBatchTimeline } from '@/composables/useBatchTimeline'
-import { CalendarDays, ClipboardCheck, GraduationCap, Award, Info, Phone, MessageCircle } from 'lucide-vue-next'
+import { CalendarDays, ClipboardCheck, GraduationCap, Award, Info, Phone, MessageCircle, Check, PartyPopper } from 'lucide-vue-next'
 import { useCmsStore } from '@/stores/useCmsStore'
 import {
   isBatchEnded as rawIsBatchEnded,
@@ -432,15 +366,6 @@ import {
   isBatchUpcoming,
   getBatchEnrollmentNotice
 } from '@/utils/batchStatus'
-
-const props = withDefaults(
-  defineProps<{
-    hideHeader?: boolean
-  }>(),
-  {
-    hideHeader: false
-  }
-)
 
 const store = useCmsStore()
 const notice = computed(() => getBatchEnrollmentNotice(store.batches))
@@ -688,7 +613,7 @@ function setupConfettiObserver() {
   })
 }
 
-// 監聽非同步資料抵達與組件掛載
+// 監聽非同步資料抵達與元件掛載
 watch(hasCelebrationBatch, (newVal) => {
   if (newVal) {
     setupConfettiObserver()
@@ -705,15 +630,5 @@ onUnmounted(() => {
     confettiObserver = null
   }
 })
-
-// 動效管理：僅在首頁有標頭滾動時啟用 ScrollTrigger；在獨立招生頁面由外層 page transition 驅動，維持 100% 穩定立即可見
-if (!props.hideHeader) {
-  useScrollStagger(
-    '#batches-cards-grid .batch-card',
-    '#batches-cards-grid',
-    { stagger: 0.1 },
-    () => store.batches.length
-  )
-}
 </script>
 
