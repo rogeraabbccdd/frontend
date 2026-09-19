@@ -130,3 +130,16 @@ const visibleFacilities = computed(() =>
 	isWide.value ? displayFacilities.value : displayFacilities.value.slice(active.value, active.value + 1),
 )
 </script>
+
+<style scoped>
+/* TransitionGroup 在切換期間會讓離開與進入的卡片同時存在。
+   手機是單欄，兩張卡片同時在文件流中會讓整格高度瞬間翻倍（322px → 643px），
+   區塊跟著撐高再縮回，就是切換時看到的那一下跳動。
+   把離開中的卡片抽離文件流，容器高度就只由進入中的那一張決定。
+   （sm 以上並排顯示全部場地，清單不變動，不會觸發離場動畫。） */
+.facility-card.panel-swap-leave-active {
+	position: absolute;
+	inset-inline: 0;
+	top: 0;
+}
+</style>
