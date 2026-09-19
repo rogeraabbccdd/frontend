@@ -20,11 +20,10 @@
         type="button"
         @click.stop="handleScrollToTop"
         aria-label="回到頁面最頂端"
-        class="px-3.5 py-2 rounded-2xl bg-slate-900/90 hover:bg-slate-850 border border-cyan-500/40 hover:border-cyan-400 text-cyan-400 shadow-2xl shadow-cyan-950/60 backdrop-blur-md flex items-center space-x-1.5 text-xs font-mono font-bold transition-all hover:scale-105 active:scale-95 group focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none cursor-pointer"
+        class="px-3.5 py-2 rounded-2xl bg-slate-900/90 hover:bg-slate-850 border border-cyan-500/40 hover:border-cyan-400 text-cyan-400 shadow-2xl shadow-cyan-950/60 backdrop-blur-md flex items-center gap-1.5 text-xs font-bold transition-all hover:scale-105 active:scale-95 group focus-visible:ring-2 focus-visible:ring-cyan-400 focus:outline-none cursor-pointer"
       >
-        <span class="group-hover:-translate-y-0.5 transition-transform pointer-events-none select-none">⚡</span>
-        <span class="text-white font-mono font-extrabold pointer-events-none select-none">{{ Math.round(scrollProgressPercent) }}%</span>
-        <span class="text-cyan-400/70 group-hover:text-cyan-300 transition-colors pointer-events-none select-none">TOP ↑</span>
+        <ArrowUp class="w-4 h-4 shrink-0 group-hover:-translate-y-0.5 transition-transform pointer-events-none" :stroke-width="2.5" />
+        <span class="text-white font-extrabold tabular-nums pointer-events-none select-none">{{ Math.round(scrollProgressPercent) }}%</span>
       </button>
     </div>
 
@@ -46,6 +45,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, nextTick, watchEffect } from 'vue'
+import { ArrowUp } from 'lucide-vue-next'
 import { useRoute, useRouter } from 'vue-router'
 import { smoothScrollToTop } from '@/utils/motion'
 import { useCmsStore } from '@/stores/useCmsStore'

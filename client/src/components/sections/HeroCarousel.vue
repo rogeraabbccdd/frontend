@@ -5,7 +5,7 @@
     <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute top-1/2 -right-40 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
 
-    <!-- 1. Top Section: Announcement Bar (抽離獨立子組件) -->
+    <!-- 1. Top Section: Announcement Bar (抽離獨立子元件) -->
     <AnnouncementBar />
 
     <!-- 2. Middle Section: Hero Content Carousel (內容向上微調上提，視覺重心更佳) -->
@@ -15,7 +15,7 @@
         <div id="hero-left-content" class="w-full max-w-3xl mx-auto lg:mx-0 lg:max-w-none lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left self-center transform-gpu will-change-transform">
           <!-- 1. 頂部認證標籤 Badge (權威背書) -->
           <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 text-sm font-bold text-cyan-400 shadow-sm shadow-cyan-950/40 mb-2.5 sm:mb-3.5 lg:mb-4">
-            <span>勞動部自辦職前訓練 ｜ <span class="inline-block">920 小時實體培訓</span></span>
+            <span>勞動部自辦職前訓練</span>
           </div>
 
           <!-- 2. 主標題與副標題固定安全高度容器 (頂部定錨 0 抖動，精密貼合文案階梯高度) -->
@@ -79,7 +79,6 @@
               class="w-full sm:w-auto px-8 py-3.5 sm:px-9 sm:py-4 rounded-2xl text-base font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/45 hover:-translate-y-0.5 active:scale-95 transition-all text-center flex items-center justify-center space-x-2 group"
             >
               <span>{{ currentSlide.cta_text || '立即查看招生期別與報名資訊' }}</span>
-              <span class="group-hover:translate-x-1 transition-transform">→</span>
             </a>
             <router-link
               v-else
@@ -87,11 +86,10 @@
               class="w-full sm:w-auto px-8 py-3.5 sm:px-9 sm:py-4 rounded-2xl text-base font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/45 hover:-translate-y-0.5 active:scale-95 transition-all text-center flex items-center justify-center space-x-2 group"
             >
               <span>{{ currentSlide.cta_text || '立即查看招生期別與報名資訊' }}</span>
-              <span class="group-hover:translate-x-1 transition-transform">→</span>
             </router-link>
           </div>
 
-          <!-- 4. 信任底座：4 大核心指標 (抽離獨立子組件) -->
+          <!-- 4. 信任底座：4 大核心指標 (抽離獨立子元件) -->
           <HeroMetrics />
         </div>
 

@@ -128,8 +128,8 @@
 						class="lg:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-slate-300 hover:text-white bg-slate-800/80 border border-slate-700/60 focus:outline-none flex-shrink-0"
 						aria-label="主要導覽選單開關"
 					>
-						<span v-if="!isOpen">☰</span>
-						<span v-else>✕</span>
+						<Menu v-if="!isOpen" class="w-6 h-6" :stroke-width="2" />
+						<X v-else class="w-6 h-6" :stroke-width="2" />
 					</button>
 				</div>
 			</nav>
@@ -253,8 +253,8 @@
 							class="lg:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-slate-300 hover:text-white bg-slate-800/80 border border-slate-700/60 focus:outline-none flex-shrink-0"
 							aria-label="主要導覽選單開關"
 						>
-							<span v-if="!isOpen">☰</span>
-							<span v-else>✕</span>
+							<Menu v-if="!isOpen" class="w-6 h-6" :stroke-width="2" />
+							<X v-else class="w-6 h-6" :stroke-width="2" />
 						</button>
 					</div>
 				</div>
@@ -327,6 +327,7 @@ import { useCmsStore } from '@/stores/useCmsStore'
 import { useThemeStore } from '@/stores/useThemeStore'
 import { getNavbarAdmissionBadge } from '@/utils/batchStatus'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { Menu, X } from 'lucide-vue-next'
 
 const store = useCmsStore()
 const themeStore = useThemeStore()
