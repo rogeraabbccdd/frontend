@@ -143,14 +143,18 @@ else:
 # 6. 技術單元卡片
 if not TechCard.objects.exists():
     techs = [
-        ("基礎與排版", "HTML5 & CSS3", "現代網頁語意標籤與進階排版"),
-        ("基礎與排版", "Bootstrap & Tailwind", "現代前端 UI 框架，快速建立響應式 (RWD) 介面"),
-        ("視覺與設計", "Adobe Photoshop & AI", "影像處理修圖、Icon 圖示設計與 UI/UX 視覺傳達流程"),
-        ("核心動態技術", "JavaScript (ES6+)", "原生 DOM 操作、非同步 Promise / Async-Await 與現代語法"),
-        ("核心動態技術", "Vue.js 3 & Pinia", "組件化架構、Composition API、Vue Router 路由與狀態管理"),
-        ("核心動態技術", "RESTful API & Axios", "前後端分離資料串接、JSON 處理與非同步請求處理"),
-        ("環境與資料管理", "Node.js & MongoDB", "Node.js 執行環境、NoSQL 資料庫設計與基礎 API 開發"),
-        ("協同開發", "Git & GitHub", "版本控制、分支管理、團隊協同開發與 GitHub Pages 部署")
+        ("基礎排版", "HTML5 & CSS3", "網頁的骨架與外觀"),
+        ("基礎排版", "Bootstrap", "用現成元件快速排出版面"),
+        ("基礎排版", "Tailwind CSS", "用工具類別直接寫樣式"),
+        ("視覺設計", "Photoshop", "影像處理與介面視覺稿"),
+        ("視覺設計", "Illustrator", "向量繪圖，做 Logo 與圖示"),
+        ("前端核心", "JavaScript", "讓網頁能互動的程式語言"),
+        ("前端核心", "Vue.js", "用元件拆解畫面的前端框架"),
+        ("前端核心", "Axios", "串接後端 API 取得資料"),
+        ("後端資料", "Node.js", "用 JavaScript 寫後端"),
+        ("後端資料", "MongoDB", "存放專題資料的資料庫"),
+        ("協同開發", "Git", "版本控制與分支管理"),
+        ("協同開發", "GitHub", "遠端協作與網站部署")
     ]
     for idx, (cat, name, desc) in enumerate(techs, 1):
         TechCard.objects.create(

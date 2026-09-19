@@ -214,11 +214,11 @@
     "pk": 1,
     "fields": {
       "deleted_at": null,
-      "category_tab": "基礎與排版",
+      "category_tab": "基礎排版",
       "tech_name": "HTML5 & CSS3",
       "icon": "",
       "image_alt": "HTML5 & CSS3 技術圖標",
-      "description": "現代網頁語意標籤與進階排版",
+      "description": "網頁的骨架與外觀",
       "sort_order": 1,
       "is_active": true
     }
@@ -228,12 +228,26 @@
     "pk": 2,
     "fields": {
       "deleted_at": null,
-      "category_tab": "基礎與排版",
-      "tech_name": "Bootstrap & Tailwind CSS",
+      "category_tab": "基礎排版",
+      "tech_name": "Bootstrap",
       "icon": "",
-      "image_alt": "Bootstrap & Tailwind 技術圖標",
-      "description": "現代前端 UI 框架，快速建立響應式 (RWD) 介面",
+      "image_alt": "Bootstrap 技術圖標",
+      "description": "用現成元件快速排出版面",
       "sort_order": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "cms.techcard",
+    "pk": 10,
+    "fields": {
+      "deleted_at": null,
+      "category_tab": "基礎排版",
+      "tech_name": "Tailwind CSS",
+      "icon": "",
+      "image_alt": "Tailwind CSS 技術圖標",
+      "description": "用工具類別直接寫樣式",
+      "sort_order": 3,
       "is_active": true
     }
   },
@@ -242,12 +256,26 @@
     "pk": 3,
     "fields": {
       "deleted_at": null,
-      "category_tab": "視覺與設計",
-      "tech_name": "Adobe Photoshop & AI",
+      "category_tab": "視覺設計",
+      "tech_name": "Photoshop",
       "icon": "",
-      "image_alt": "Adobe Photoshop & AI 技術圖標",
-      "description": "影像處理修圖、Icon 圖示設計與 UI/UX 視覺傳達流程",
-      "sort_order": 3,
+      "image_alt": "Photoshop 技術圖標",
+      "description": "影像處理與介面視覺稿",
+      "sort_order": 4,
+      "is_active": true
+    }
+  },
+  {
+    "model": "cms.techcard",
+    "pk": 11,
+    "fields": {
+      "deleted_at": null,
+      "category_tab": "視覺設計",
+      "tech_name": "Illustrator",
+      "icon": "",
+      "image_alt": "Illustrator 技術圖標",
+      "description": "向量繪圖，做 Logo 與圖示",
+      "sort_order": 5,
       "is_active": true
     }
   },
@@ -256,12 +284,12 @@
     "pk": 4,
     "fields": {
       "deleted_at": null,
-      "category_tab": "核心動態技術",
-      "tech_name": "JavaScript (ES6+)",
+      "category_tab": "前端核心",
+      "tech_name": "JavaScript",
       "icon": "",
-      "image_alt": "JavaScript (ES6+) 技術圖標",
-      "description": "原生 DOM 操作、非同步 Promise / Async-Await 與現代語法",
-      "sort_order": 4,
+      "image_alt": "JavaScript 技術圖標",
+      "description": "讓網頁能互動的程式語言",
+      "sort_order": 6,
       "is_active": true
     }
   },
@@ -270,12 +298,12 @@
     "pk": 5,
     "fields": {
       "deleted_at": null,
-      "category_tab": "核心動態技術",
-      "tech_name": "Vue.js 3 & Pinia",
+      "category_tab": "前端核心",
+      "tech_name": "Vue.js",
       "icon": "",
-      "image_alt": "Vue.js 3 & Pinia 技術圖標",
-      "description": "組件化架構、Composition API、Vue Router 路由與狀態管理",
-      "sort_order": 5,
+      "image_alt": "Vue.js 技術圖標",
+      "description": "用元件拆解畫面的前端框架",
+      "sort_order": 7,
       "is_active": true
     }
   },
@@ -284,12 +312,12 @@
     "pk": 6,
     "fields": {
       "deleted_at": null,
-      "category_tab": "核心動態技術",
-      "tech_name": "RESTful API & Axios",
+      "category_tab": "前端核心",
+      "tech_name": "Axios",
       "icon": "",
-      "image_alt": "RESTful API & Axios 技術圖標",
-      "description": "前後端分離資料串接、JSON 處理與非同步請求處理",
-      "sort_order": 6,
+      "image_alt": "Axios 技術圖標",
+      "description": "串接後端 API 取得資料",
+      "sort_order": 8,
       "is_active": true
     }
   },
@@ -298,12 +326,26 @@
     "pk": 7,
     "fields": {
       "deleted_at": null,
-      "category_tab": "環境與資料管理",
-      "tech_name": "Node.js & MongoDB",
+      "category_tab": "後端資料",
+      "tech_name": "Node.js",
       "icon": "",
-      "image_alt": "Node.js & MongoDB 技術圖標",
-      "description": "Node.js 執行環境、NoSQL 資料庫設計與基礎 API 開發",
-      "sort_order": 7,
+      "image_alt": "Node.js 技術圖標",
+      "description": "用 JavaScript 寫後端",
+      "sort_order": 9,
+      "is_active": true
+    }
+  },
+  {
+    "model": "cms.techcard",
+    "pk": 9,
+    "fields": {
+      "deleted_at": null,
+      "category_tab": "後端資料",
+      "tech_name": "MongoDB",
+      "icon": "",
+      "image_alt": "MongoDB 技術圖標",
+      "description": "存放專題資料的資料庫",
+      "sort_order": 10,
       "is_active": true
     }
   },
@@ -313,11 +355,25 @@
     "fields": {
       "deleted_at": null,
       "category_tab": "協同開發",
-      "tech_name": "Git & GitHub",
+      "tech_name": "Git",
       "icon": "",
-      "image_alt": "Git & GitHub 技術圖標",
-      "description": "版本控制、分支管理、團隊協同開發與 GitHub Pages 部署",
-      "sort_order": 8,
+      "image_alt": "Git 技術圖標",
+      "description": "版本控制與分支管理",
+      "sort_order": 11,
+      "is_active": true
+    }
+  },
+  {
+    "model": "cms.techcard",
+    "pk": 12,
+    "fields": {
+      "deleted_at": null,
+      "category_tab": "協同開發",
+      "tech_name": "GitHub",
+      "icon": "",
+      "image_alt": "GitHub 技術圖標",
+      "description": "遠端協作與網站部署",
+      "sort_order": 12,
       "is_active": true
     }
   },

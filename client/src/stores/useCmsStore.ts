@@ -7,7 +7,7 @@ import type {
   StudentProject, FAQItem
 } from '@/types'
 
-const CACHE_KEY = 'wdaweb_cms_cache_v3'
+const CACHE_KEY = 'wdaweb_cms_cache_v4'
 
 // 預設靜態快照 (確保 0.01 秒秒開與 Render 後端休眠冷啟動零等待體驗)
 const defaultSettings: SiteSetting = {
@@ -144,14 +144,18 @@ const defaultProjects: StudentProject[] = [
 ]
 
 const defaultTechCards: TechCard[] = [
-  { id: 1, category_tab: '基礎與排版', tech_name: 'HTML5 & CSS3', icon_url: '', image_alt: 'HTML5 & CSS3', description: '現代網頁語意標籤與進階排版', sort_order: 1 },
-  { id: 2, category_tab: '基礎與排版', tech_name: 'Bootstrap & Tailwind', icon_url: '', image_alt: 'Bootstrap & Tailwind', description: '現代前端 UI 框架，快速建立響應式 (RWD) 介面', sort_order: 2 },
-  { id: 3, category_tab: '視覺與設計', tech_name: 'Adobe Photoshop & AI', icon_url: '', image_alt: 'Adobe Photoshop & AI', description: '影像處理修圖、Icon 圖示設計與 UI/UX 視覺傳達流程', sort_order: 3 },
-  { id: 4, category_tab: '核心動態技術', tech_name: 'JavaScript (ES6+)', icon_url: '', image_alt: 'JavaScript (ES6+)', description: '原生 DOM 操作、非同步 Promise / Async-Await 與現代語法', sort_order: 4 },
-  { id: 5, category_tab: '核心動態技術', tech_name: 'Vue.js 3 & Pinia', icon_url: '', image_alt: 'Vue.js 3 & Pinia', description: '組件化架構、Composition API、Vue Router 路由與狀態管理', sort_order: 5 },
-  { id: 6, category_tab: '核心動態技術', tech_name: 'RESTful API & Axios', icon_url: '', image_alt: 'RESTful API & Axios', description: '前後端分離資料串接、JSON 處理與非同步請求處理', sort_order: 6 },
-  { id: 7, category_tab: '環境與資料管理', tech_name: 'Node.js & MongoDB', icon_url: '', image_alt: 'Node.js & MongoDB', description: 'Node.js 執行環境、NoSQL 資料庫設計與基礎 API 開發', sort_order: 7 },
-  { id: 8, category_tab: '協同開發', tech_name: 'Git & GitHub', icon_url: '', image_alt: 'Git & GitHub', description: '版本控制、分支管理、團隊協同開發與 GitHub Pages 部署', sort_order: 8 }
+  { id: 1, category_tab: '基礎排版', tech_name: 'HTML5 & CSS3', icon_url: '', image_alt: 'HTML5 & CSS3 技術圖標', description: '網頁的骨架與外觀', sort_order: 1 },
+  { id: 2, category_tab: '基礎排版', tech_name: 'Bootstrap', icon_url: '', image_alt: 'Bootstrap 技術圖標', description: '用現成元件快速排出版面', sort_order: 2 },
+  { id: 10, category_tab: '基礎排版', tech_name: 'Tailwind CSS', icon_url: '', image_alt: 'Tailwind CSS 技術圖標', description: '用工具類別直接寫樣式', sort_order: 3 },
+  { id: 3, category_tab: '視覺設計', tech_name: 'Photoshop', icon_url: '', image_alt: 'Photoshop 技術圖標', description: '影像處理與介面視覺稿', sort_order: 4 },
+  { id: 11, category_tab: '視覺設計', tech_name: 'Illustrator', icon_url: '', image_alt: 'Illustrator 技術圖標', description: '向量繪圖，做 Logo 與圖示', sort_order: 5 },
+  { id: 4, category_tab: '前端核心', tech_name: 'JavaScript', icon_url: '', image_alt: 'JavaScript 技術圖標', description: '讓網頁能互動的程式語言', sort_order: 6 },
+  { id: 5, category_tab: '前端核心', tech_name: 'Vue.js', icon_url: '', image_alt: 'Vue.js 技術圖標', description: '用元件拆解畫面的前端框架', sort_order: 7 },
+  { id: 6, category_tab: '前端核心', tech_name: 'Axios', icon_url: '', image_alt: 'Axios 技術圖標', description: '串接後端 API 取得資料', sort_order: 8 },
+  { id: 7, category_tab: '後端資料', tech_name: 'Node.js', icon_url: '', image_alt: 'Node.js 技術圖標', description: '用 JavaScript 寫後端', sort_order: 9 },
+  { id: 9, category_tab: '後端資料', tech_name: 'MongoDB', icon_url: '', image_alt: 'MongoDB 技術圖標', description: '存放專題資料的資料庫', sort_order: 10 },
+  { id: 8, category_tab: '協同開發', tech_name: 'Git', icon_url: '', image_alt: 'Git 技術圖標', description: '版本控制與分支管理', sort_order: 11 },
+  { id: 12, category_tab: '協同開發', tech_name: 'GitHub', icon_url: '', image_alt: 'GitHub 技術圖標', description: '遠端協作與網站部署', sort_order: 12 }
 ]
 
 const defaultFacilities: Facility[] = [
