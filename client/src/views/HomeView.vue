@@ -31,10 +31,10 @@
 			<div class="max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6 relative z-10 w-full">
 
 				<h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-white tracking-tight leading-tight text-balance">
-					<span class="block">不用先相信自己做得到。</span>
+					<span class="block">不用先相信自己做得到</span>
 					<span
-						class="block mt-1 sm:mt-1.5 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400"
-						>先看看別人做出了什麼。</span
+						class="block mt-1 sm:mt-1.5"
+						>先看看別人做出了什麼</span
 					>
 				</h2>
 
@@ -67,15 +67,15 @@
 			<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-7 relative z-10 w-full">
 
 				<h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-white tracking-tight leading-tight text-balance">
-					<span class="block">轉職不是一個輕鬆的決定。</span>
+					<span class="block">轉職不是一個輕鬆的決定</span>
 					<span
-						class="block mt-1 sm:mt-1.5 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400"
-						>先看清楚、想明白，再跨出下一步。</span
+						class="block mt-1 sm:mt-1.5"
+						>先看清楚、想明白，再跨出下一步</span
 					>
 				</h2>
 
 				<p class="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed text-pretty text-center">
-					920 小時，半年，平日白天在教室動手做。
+					半年、920 小時，平日白天都在教室裡動手實作。
 				</p>
 
 				<!-- 底部三軌按鈕群組 (手機直式堆疊，平板與桌機橫向排開) -->
@@ -129,7 +129,7 @@ import TracksSection from '@/components/sections/TracksSection.vue'
 
 useSeoMeta({
   title: '泰山職訓「前端網頁技術與AI應用」前端課程｜920 小時政府全額補助實體培訓',
-  description: '【政府全額補助前端課程】勞動部泰山職訓場「前端網頁技術與AI應用專班」招生中！920 小時實體密集培訓，一人獨立雙螢幕實作工位，完整涵蓋 Vue 3、TypeScript、AI 開發工具整合與專案作品集。待業民眾經甄試錄取享 100% 全額免費受訓與生活津貼補助，正式報名請至台灣就業通官方網站。諮詢專線：(02) 2901-8274。',
+  description: '【政府全額補助前端課程】勞動部泰山職訓場「前端網頁技術與AI應用專班」招生中。920 小時實體密集培訓，一人獨立雙螢幕實作工位，完整涵蓋 Vue 3、TypeScript、AI 開發工具整合與專案作品集。待業民眾經甄試錄取享 100% 全額免費受訓與生活津貼補助，正式報名請至台灣就業通官方網站。諮詢專線：(02) 2901-8274。',
   canonicalPath: '/',
   robots: 'index, follow'
 })
