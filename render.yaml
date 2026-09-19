@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: wdaweb-backend
+    name: wdaweb-backend-redesign
     env: python
     rootDir: server
     buildCommand: "./build.sh"
