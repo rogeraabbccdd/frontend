@@ -451,6 +451,11 @@
 		display: none !important;
 	}
 
+	/* 矮視窗優先保住 100dvh：放棄為最多卡片預留的面板高度 */
+	.tab-panel-reserve {
+		min-height: 0 !important;
+	}
+
 	.accordion-trigger {
 		padding-block: 0.625rem;
 	}
@@ -480,4 +485,32 @@
 	min-height: 100dvh;
 	display: flex;
 	align-items: center;
+}
+
+/* ==========================================================================
+   面板切換動效 (Panel Swap)
+   全站唯一的一組切換動效：頁籤、階段、圖示磚與場地卡片共用同一組時間與位移，
+   讓「切換」這個動作在每一區的回饋手感一致。動效只回應使用者操作，
+   不做自動播放的進場動畫。
+   ========================================================================== */
+.panel-swap-enter-active,
+.panel-swap-leave-active {
+	transition: opacity 0.26s ease-out, transform 0.26s ease-out;
+}
+
+.panel-swap-enter-from {
+	opacity: 0;
+	transform: translateY(9px);
+}
+
+.panel-swap-leave-to {
+	opacity: 0;
+	transform: translateY(-6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.panel-swap-enter-active,
+	.panel-swap-leave-active {
+		transition: none;
+	}
 }

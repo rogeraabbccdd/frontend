@@ -60,7 +60,7 @@
 			class="mt-4 sm:mt-6 rounded-3xl p-5 sm:p-8 bg-slate-900/80 backdrop-blur-xl border shadow-2xl shadow-slate-950/60 text-center"
 			:class="current.panelBorder"
 		>
-			<Transition name="spotlight-fade" mode="out-in">
+			<Transition name="panel-swap" mode="out-in">
 				<div :key="current.key">
 					<div
 						v-if="current.eyebrow"
@@ -150,26 +150,3 @@ function onKeydown(event: KeyboardEvent) {
 }
 </script>
 
-<style scoped>
-.spotlight-fade-enter-active,
-.spotlight-fade-leave-active {
-	transition: opacity 0.22s ease-out, transform 0.22s ease-out;
-}
-
-.spotlight-fade-enter-from {
-	opacity: 0;
-	transform: translateY(8px);
-}
-
-.spotlight-fade-leave-to {
-	opacity: 0;
-	transform: translateY(-5px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.spotlight-fade-enter-active,
-	.spotlight-fade-leave-active {
-		transition: none;
-	}
-}
-</style>

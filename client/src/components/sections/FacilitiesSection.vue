@@ -14,7 +14,7 @@
       <div v-if="!hideHeader" class="section-head text-center max-w-5xl mx-auto">
         <h2 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-tight text-balance">
           <span class="block lg:inline">接下來半年<span class="hidden lg:inline">，</span></span><span
-						class="block mt-1 lg:mt-0 lg:inline text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400">你會在這裡學習</span>
+						class="block mt-1 lg:mt-0 lg:inline">你會在這裡學習</span>
         </h2>
       </div>
 
@@ -23,6 +23,7 @@
       <div id="facilities-cards-grid" class="relative grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-5xl mx-auto">
         <StepperArrows v-model="active" :total="displayFacilities.length" unit-label="場地" />
 
+        <TransitionGroup name="panel-swap">
         <div
           v-for="(fac, index) in visibleFacilities"
           :key="fac.id || index"
@@ -52,6 +53,7 @@
             </p>
           </div>
         </div>
+        </TransitionGroup>
       </div>
     </div>
   </section>
