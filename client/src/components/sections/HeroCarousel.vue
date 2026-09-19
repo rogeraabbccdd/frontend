@@ -1,6 +1,6 @@
 <template>
   <!-- 全裝置首屏極致自適應架構 (手機與桌機滿版定錨，筆電矮螢幕高度自然呼吸防截斷) -->
-  <section id="hero" class="relative min-h-[100dvh] lg:min-h-[100dvh] lg:h-auto xl:h-[100dvh] xl:max-h-[100dvh] flex flex-col justify-between pt-20 sm:pt-24 lg:pt-24 xl:pt-28 2xl:pt-32 pb-6 sm:pb-8 lg:pb-8 xl:pb-10 overflow-hidden bg-transparent">
+  <section id="hero" class="relative min-h-[100svh] lg:min-h-[100svh] lg:h-auto xl:h-[100svh] xl:max-h-[100svh] flex flex-col justify-between pt-20 sm:pt-24 lg:pt-24 xl:pt-28 2xl:pt-32 pb-6 sm:pb-8 lg:pb-8 xl:pb-10 overflow-hidden bg-transparent">
     <!-- Background Decorative Glow -->
     <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute top-1/2 -right-40 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>

@@ -64,8 +64,8 @@
 
 							<div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
 								<!-- 適合對象 -->
-								<!-- 適合對象清單：極矮視窗收起，確保整區仍收進 100dvh -->
-								<div class="short-viewport-hide md:col-span-2 p-4 sm:p-5 rounded-2xl bg-slate-950/70 border border-slate-800/90">
+								<!-- 適合對象清單 -->
+								<div class="md:col-span-2 p-4 sm:p-5 rounded-2xl bg-slate-950/70 border border-slate-800/90">
 									<div class="text-base font-bold tracking-wide mb-2.5" :class="current.accentText">適合對象</div>
 									<ul class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-base text-slate-300">
 										<li v-for="fit in current.fits" :key="fit" class="flex items-center gap-2 whitespace-nowrap">

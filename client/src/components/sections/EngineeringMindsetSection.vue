@@ -73,7 +73,7 @@
 				</div>
 
 				<!-- AI 實務協同場景 (原 AI Workflow 區塊收斂合併；極矮視窗收起) -->
-				<div class="short-viewport-hide">
+				<div>
 					<p class="text-base font-bold text-blue-300 mb-4">課堂上的 3 個 AI 實務場景</p>
 
 					<div class="grid grid-cols-3 gap-2.5 sm:gap-5">

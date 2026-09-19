@@ -278,7 +278,7 @@
 		<Transition name="fade-slide">
 			<div
 				v-if="isOpen"
-				class="lg:hidden fixed inset-x-4 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 sm:w-full sm:max-w-lg top-[76px] sm:top-[88px] p-5 sm:p-6 rounded-3xl bg-slate-900/95 backdrop-blur-2xl border border-slate-800 shadow-2xl shadow-black/80 space-y-2 z-50 max-h-[calc(100dvh-100px)] overflow-y-auto"
+				class="lg:hidden fixed inset-x-4 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 sm:w-full sm:max-w-lg top-[76px] sm:top-[88px] p-5 sm:p-6 rounded-3xl bg-slate-900/95 backdrop-blur-2xl border border-slate-800 shadow-2xl shadow-black/80 space-y-2 z-50 max-h-[calc(100svh-100px)] overflow-y-auto"
 			>
 				<router-link
 					v-for="item in navItems"

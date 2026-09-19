@@ -38,7 +38,7 @@
 					id="tech-stack-panel"
 					role="tabpanel"
 					:aria-labelledby="`tech-stack-tab-${active}`"
-					class="tab-panel-reserve mt-5 sm:mt-6 min-h-[26.5rem] md:min-h-[23.25rem] xl:min-h-0 grid content-start"
+					class="mt-5 sm:mt-6 min-h-[26.5rem] md:min-h-[23.25rem] xl:min-h-0 grid content-start"
 				>
 					<Transition name="panel-swap" mode="out-in">
 						<div
